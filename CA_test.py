@@ -1,5 +1,5 @@
 import numpy as np
-h = 1
+h = 10
 w = 5
 array = np.zeros((h, w), dtype = int)
 
