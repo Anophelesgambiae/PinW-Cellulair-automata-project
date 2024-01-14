@@ -12,10 +12,10 @@ class two_dimension_CA(square_CA):
         # Dimensions of the field.
         self.width = width
 
-        # Initialise the field with only state 0.
+        # Initialise the field as an array of zeros
         self.field = np.zeros((length, width), dtype = int)
 
-        # Populate the field with some other states.
+        # Set the value to 1 for some of the elements on the field
         for row in range(0, len(self.field)):
             for column in range(0 ,len(self.field[row])):
                 # The p is a list with the frequency of each state in order of 0 and higher. 
@@ -76,6 +76,6 @@ class two_dimension_CA(square_CA):
     def set_new_state_at_boundary(self, old_state, row, column, neighbour_sum, boundary_condition):
         None
 
-
-a = two_dimension_CA(6,20)
+# Test
+a = two_dimension_CA(8 ,20)
 print(a)
