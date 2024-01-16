@@ -5,12 +5,16 @@ import msvcrt as ms
 import time
 import copy
 
+'''
+This a class of a two dimensional Cellulair automata (CA). The field is thus a retangle with a predefined length and width.  
+'''
 class two_dimension_CA(square_CA):
 
     # Constructor of the field.
-    def __init__(self, length, width):
+    def __init__(self, length, width, neighbourhood_rule, boundary_condition):
         # Dimensions of the field.
         self.width = width
+        self.neighbourhood_rule = neighbourhood_rule
 
         # Initialise the field as an array of zeros
         self.field = np.zeros((length, width), dtype = int)
@@ -23,26 +27,36 @@ class two_dimension_CA(square_CA):
                 self.field[row][column] = state
         # Remove later
         print(self.field)
-        self.next_generation()
+        self.next_generation(neighbourhood_rule, boundary_condition)
     
     # Return a string of the field.
     def __str__(self):
         return str(self.field)    
     
-    def next_generation(self):
+    def next_generation(self, neighbourhood_rule, boundary_condition):
 
         while True:
             time.sleep(1)
             old_field = copy.deepcopy(self.field)
             
-            # Game of life
-            for row in range(1, len(old_field)-1):
-                for column in range(1 , len(old_field[row])-1):
+            match boundary_condition:
+                case "periodic":
+                    for row in range(0, len(old_field)):
+                        for column in range(0 , len(old_field[row])):
 
-                    old_state = old_field[row][column]
+                            old_state = old_field[row][column]
 
-                    neighbour_sum = self.return_neighbour_sum(old_field, row, column, None)
-                    self.set_new_state(old_state, row, column, neighbour_sum)         
+                            neighbour_sum = self.return_neighbour_sum(old_field, row, column, neighbourhood_rule)
+                            self.set_new_state(old_state, row, column, neighbour_sum)   
+
+                case "constant":
+                    for row in range(1, len(old_field)-1):
+                        for column in range(1 , len(old_field[row])-1):
+
+                            old_state = old_field[row][column]
+
+                            neighbour_sum = self.return_neighbour_sum(old_field, row, column, neighbourhood_rule)
+                            self.set_new_state(old_state, row, column, neighbour_sum) 
 
             # Remove later
             print(self.field)
@@ -50,14 +64,33 @@ class two_dimension_CA(square_CA):
             if ms.kbhit():
                 if ord(ms.getch()) == 32:
                     break 
-    
-    def return_neighbour_sum(self, old_field, row,column, neighbourhood_type):
-        neighbour_sum = 0
-        for neighbour_row in range(row-1, row+2):
-            for neighbour_column in range(column-1, column+2):
-                neighbour_sum += old_field[neighbour_row][neighbour_column]
+    '''
+
+    '''
+    def return_neighbour_sum(self, old_field, row, column, neighbourhood_rule):
+        match neighbourhood_rule:
+            case "Moore":
+                    neighbour_sum = old_field[(row-1) % (len(old_field))][(column-1) % (len(old_field[row]))] + \
+                                    old_field[(row-1) % (len(old_field))][column] + \
+                                    old_field[(row-1) % (len(old_field))][(column+1) % (len(old_field[row]))] + \
+                                    old_field[row][(column-1) % (len(old_field[row]))] + \
+                                    old_field[row][(column+1) % (len(old_field[row]))] + \
+                                    old_field[(row+1) % (len(old_field))][(column-1) % (len(old_field[row]))] + \
+                                    old_field[(row+1) % (len(old_field))][column] + \
+                                    old_field[(row+1) % (len(old_field))][(column+1) % (len(old_field[row]))]
+            case "vonNeumann":
+                    neighbour_sum = old_field[(row-2) % (len(old_field))][column] + \
+                                    old_field[(row-1) % (len(old_field))][column] + \
+                                    old_field[row][(column-2) % (len(old_field[row]))] + \
+                                    old_field[row][(column-1) % (len(old_field[row]))] + \
+                                    old_field[row][(column+1) % (len(old_field[row]))] + \
+                                    old_field[row][(column+2) % (len(old_field[row]))] + \
+                                    old_field[(row-1) % (len(old_field))][column] + \
+                                    old_field[(row-2) % (len(old_field))][column] 
+
         return neighbour_sum
     
+
     # Set the new state of the elements not on the boundary.
     def set_new_state(self, old_state, row, column, neighbour_sum):
         if old_state == 1:
@@ -72,10 +105,8 @@ class two_dimension_CA(square_CA):
 
         self.field[row][column] = new_state    
 
-    # We must do something special with the elements on the boundary line. 
-    def set_new_state_at_boundary(self, old_state, row, column, neighbour_sum, boundary_condition):
-        None
+    
 
 # Test
-a = two_dimension_CA(8 ,20)
+a = two_dimension_CA(8, 20, "Moore", "constant")
 print(a)
