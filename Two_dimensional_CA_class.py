@@ -108,5 +108,5 @@ class two_dimension_CA(square_CA):
     
 
 # Test
-a = two_dimension_CA(8, 20, "Moore", "constant")
+a = two_dimension_CA(8, 20, "Moore", "periodic")
 print(a)
