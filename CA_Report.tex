@@ -1,0 +1,124 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.5cm]{geometry}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath,mathtools}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage[english]{babel}
+\usepackage[bookmarksnumbered]{hyperref}
+\usepackage{setspace}
+
+
+\title{CA Reportage}
+\author{
+\texttt{r.m.r.dehaas, \hspace{6pt} 
+Studentennummer:\hspace{2pt}0954160}
+\and
+\texttt{Fabian.deVries, \hspace{6pt}
+Studentennummer:\hspace{2pt}X}}
+\date{Y Januari 2024}
+
+\begin{document}
+\setstretch{1.2}
+\maketitle
+\section*{Achtergrond}
+Cellulaire automata (CA) is een discreet model. 
+Bij een CA is er een regelmatige veld met cellen. 
+Elke cel kan in een eindig aantal staten verkeren.
+Het simpelste aantal staten is dat cellen 
+de staat levend (met binair het getal 1) of dood (met binair het getal 0) kunnen hebben.
+Een CA heeft een begin situatie, dus een vast begin met cellen met verschillende staten.
+De volgende generatie cellen wordt recursief bepaald. 
+De regels van de CA bepalen hoe deze recursie wordt uitgevoerd.
+Wij hebben twee specifieke CA's geprogrammeerd, de een-dimensionale en 
+twee-dimensionale CA, beide met een vierkante veld. 
+De cellen zijn dus vierkant  
+We zullen nu de belangrijkste parameters van een CA beschrijven.
+De een-dimensionale CA heeft een lengte en de twee-dimensionale een lengte en breedte.
+Omdat een computer niet een oneindig groot veld kan maken is het belangrijk dat 
+er met de cellen in de grens van het veld iets apart wordt gedaan. Er moet een 'boundary' defintie worden gegeven.
+Bij de constante 'boundary' definitie laten we de cellen bij de border constant.
+Bij de periodieke 'boundary' definitie wordt de grenzen van het veld als een donut verbonden.
+Elke cel heeft buren om zich heen die bepalen wat de nieuwe staat van een cel is.
+Bij de twee-dimensionale CA zijn er in ieder geval twee soorten buren mogelijk, de Moore buren en de VonNeumann buren.
+Bij de Moore buren worden alle aangrenzende cellen (dus ook diagonaal) als buren gerekend.
+De VonNeumann buren is hetzelfde als die van Moore buren behalve dat de buren die diagonaal liggen niet meetellen.
+Bij de een-dimensionale CA zijn de linker- en rechterkant van een cell de buren.
+Elke CA heeft nog een gedefineerde regel. De regel bepaald wat de nieuwe staat wordt van een cel.
+De regels worden recursief uitgevoerd.
+\textcolor{red}{Hulp nodig bij de uitleg van de regels van de 1d CA}
+\newpage
+Een bekende regel bij de twee-dimensionale CA is 'the game of life'. 
+\newline
+De regel van 'the game of life' zijn als volgt:
+\vspace{4pt}
+\newline
+$\bullet$ Elke levende cel met minder dan twee buren gaat dood (onderpopulatie) 
+\newline 
+$\bullet$ Elke levende cel met twee of drie buren blijft levend.
+\newline
+$\bullet$ Elke levende cel met meer dan drie buren gaat dood (overpopulatie)
+\newline 
+$\bullet$ Elke dode cel met precies drie buren wordt levend (reproductie) 
+\newline
+\vspace{4pt}
+\textcolor{red}{De vraag en rest moet nog geschreven worden}
+
+
+\section*{Implementatie en verantwoording}
+\textcolor{red}{Moet nog geschreven worden}
+
+
+\section*{Algoritmes}
+\textcolor{red}{Nog iets met design van de allgoritme}
+De datastructuren die zijn gebruik zijn 'arrays', 'lists' en 'dictionary's'.
+
+\textcolor{red}{Nog iets met complexity} 
+
+\section*{Code}
+\textcolor{red}{De manier om input te geven moeten we nog bespreken}
+\newline
+Bij zowel de een-dimensionale als twee-dimensionale CA moet 
+er een lengte en 'boundary' conditie als input worden gegeven.
+Daarnaast moet er in de een-dimensionale CA een regel nummer worden gegeven.
+Bij de twee-dimensionale CA moet ook een regel worden gegeven als input, maar niet als nummer (er zijn teveel mogelijkheden).
+Een input kan zijn life. De regels van 'the game of life' worden dan gebruikt.
+Verder moet er nog een burenregel als input worden gegeven (Mooren of VonNeumann).
+
+
+\section*{Resultaten}
+\textcolor{red}{Moet nog worden gedaan}
+
+\section*{Conclusie}
+\textcolor{red}{Moet nog worden gedaan}
+
+\section*{Discussie}
+\textcolor{red}{Moet nog worden gedaan}
+
+\section*{Takenverdeling}
+We hebben de taken als volgt de verdeeld:
+\vspace{6pt}
+\newline
+de Haas:
+\newline
+1) abstracte CA klassen
+\newline
+2) twee-dimensionale CA klasse
+\vspace{6pt}
+\newline
+de Vries:
+\newline
+1) een-dimensionale CA klasse
+\newline
+\textcolor{red}{volgt meer}
+
+We hebben wel de code (dus de twee klassen) zo analoog mogelijk gemaakt.
+
+  
+
+\end{document}
