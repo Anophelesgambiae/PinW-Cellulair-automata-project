@@ -42,7 +42,7 @@ class two_dimension_CA(square_CA):
         for row in range(0, length):
             for column in range(0 , width):
                 # The p is a list with the frequency of each state in order of 0 and higher. 
-                state = np.random.choice(np.arange(0,2), p=[0.6, 0.4])
+                state = np.random.choice(np.arange(0,2), p=[0.5, 0.5])
                 self.field[row][column] = state
         # Remove later
         print(self.field)
@@ -138,19 +138,22 @@ class two_dimension_CA(square_CA):
                                     old_field[(row+1) % length][column] + \
                                     old_field[(row+1) % length][(column+1) % width]
             case "vonNeumann":
-                    neighbour_sum = old_field[(row-2) % length][column] + \
-                                    old_field[(row-1) % length][column] + \
-                                    old_field[row][(column-2) % width] + \
+                    neighbour_sum = old_field[(row-1) % length][column] + \
                                     old_field[row][(column-1) % width] + \
                                     old_field[row][(column+1) % width] + \
-                                    old_field[row][(column+2) % width] + \
-                                    old_field[(row-1) % length][column] + \
-                                    old_field[(row-2) % length][column] 
+                                    old_field[(row+1) % length][column] 
             case _:
                 raise NameError(str(neighbourhood_rule) + " " + "is not defined in the return_neighbour_sum method")
 
         return neighbour_sum
 
-# Test
-a = two_dimension_CA(8, 20, "Life", "Moore","periodic")
-print(a)
+# Make a two dimensional CA with the inputs of the user.
+dimensions = input("Gives the length and width of the CA with a space: ").split(" ")
+length = int(dimensions[0])
+width = int(dimensions[1])
+rules = input("Gives the rule, neighbouthood rule and bounday condition with a space: ").split(" ")
+rule = rules[0]
+neighbourhood_rule = rules[1]
+boundary_condition = rules[2] 
+
+CA = two_dimension_CA(length, width, rule, neighbourhood_rule, boundary_condition)
