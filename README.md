@@ -7,7 +7,7 @@ The square CA have the following inputs:
 
 A bounday condition tells what we do with the cells on the border.
 
-The one dimensional CA has also the follwoing input:
+The one dimensional CA has also the following input:
 - rule number
 
 The rule number defines what the new state of a cell becomes with each state of the neigbours.
@@ -17,5 +17,13 @@ The two dimensional CA has also the following inputs:
 - neighboorhood rule
 
 The rule says what the new state must be for different number of neighbours.
-The neighbourhood rule tells what cells are neighbours of a cell.
+The neighbourhood rule tells what cells around a cell are neighbours.
+
+There is a abstract class the CA who have different chil classes. This is how the classes are constructed:
+class CA:
+  square CA:
+    - one-dimensional CA
+    - two-dimensional CA
+
+Both the one-dimensional and two-dimensional CA are square CA who where each cell is a square.
 
