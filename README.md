@@ -19,7 +19,7 @@ The two dimensional CA has also the following inputs:
 The rule says what the new state must be for different number of neighbours.
 The neighbourhood rule tells what cells around a cell are neighbours.
 
-There is a abstract class the CA who have different chil classes. This is how the classes are constructed:
+There is a abstract class the CA who have different child classes. This is how the classes are related:
 class CA:
   square CA:
     - one-dimensional CA
