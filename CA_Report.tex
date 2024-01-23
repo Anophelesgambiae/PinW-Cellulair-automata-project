@@ -75,13 +75,29 @@ $\bullet$ Elke dode cel met precies drie buren wordt levend (reproductie)
 
 
 \section*{Algoritmes}
-\textcolor{red}{Nog iets met design van de allgoritme}
-De datastructuren die zijn gebruik zijn 'arrays', 'lists' en 'dictionary's'.
+We hebben een abstracte class CA gemaakt die verschillende 'child' classen heeft.
+\newline
+De structuur van de klassen zien er als volgt uit:
+\newline
+class CA:
+\newline
+.\hspace{10pt}square CA class:
+\newline
+.\hspace{20pt}one-dimensional CA class
+\newline
+.\hspace{20pt}two-dimensional CA class
+\vspace{6pt}
+\newline
+De datastructuren die zijn gebruik zijn 'arrays', 'lists' en 'dictionary's'. 
+De 'array' is gebruikt voor het veld waarbij de indices de plaats van het element op het veld weergeven en 
+de waarde van het element zelf de staat voorstelt.
+De dictionary wordt bij de een-dimensionale CA gebruikt voor het opzoeken welke staat een cell moet zijn met de gegeven buren.
+De lists was nodig om de lopen over de dictionary.
 
 \textcolor{red}{Nog iets met complexity} 
 
 \section*{Code}
-\textcolor{red}{De manier om input te geven moeten we nog bespreken}
+Bij het opstarten van het progamma wordt er van de gebruiker input gevraagd.
 \newline
 Bij zowel de een-dimensionale als twee-dimensionale CA moet 
 er een lengte en 'boundary' conditie als input worden gegeven.
