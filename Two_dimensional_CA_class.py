@@ -16,12 +16,12 @@ The rule is how we can define when a cell have the state 0 or 1. We have the fol
 - Life 
 
 The neighbourhood_rule is what are the neigbours of one cell. The rules are:
-- Moore 
+- Moore
 - vonNeumann 
 
 The boundary_condition is what we do with the cells at the boundary. The rules are:
-- periodic
-- constant
+- periodic 
+- constant (the cells on the border are constant)
 
 '''
 class two_dimension_CA(square_CA):
@@ -30,6 +30,9 @@ class two_dimension_CA(square_CA):
     Make a field with a random state on each cell. Calls the next_generation method.
     '''
     def __init__(self, length, width, rule, neighbourhood_rule, boundary_condition):
+
+        if length < 0 or width < 0:
+            raise ValueError("length and width must be greather than zero.")
 
         self.width = width
         self.neighbourhood_rule = neighbourhood_rule
@@ -148,10 +151,10 @@ class two_dimension_CA(square_CA):
         return neighbour_sum
 
 # Make a two dimensional CA with the inputs of the user.
-dimensions = input("Gives the length and width of the CA with a space: ").split(" ")
+dimensions = input("Give the length and width of the CA with a space: ").split(" ")
 length = int(dimensions[0])
 width = int(dimensions[1])
-rules = input("Gives the rule, neighbouthood rule and bounday condition with a space: ").split(" ")
+rules = input("Give the rule, neighbourhood rule and boundary condition with a space: ").split(" ")
 rule = rules[0]
 neighbourhood_rule = rules[1]
 boundary_condition = rules[2] 
