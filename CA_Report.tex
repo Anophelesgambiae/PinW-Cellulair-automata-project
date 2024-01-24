@@ -12,6 +12,7 @@
 \usepackage[english]{babel}
 \usepackage[bookmarksnumbered]{hyperref}
 \usepackage{setspace}
+\usepackage{tabularx}
 
 
 \title{CA Reportage}
@@ -51,11 +52,28 @@ De VonNeumann buren is hetzelfde als die van Moore buren behalve dat de buren di
 Bij de een-dimensionale CA zijn de linker- en rechterkant van een cell de buren.
 Elke CA heeft nog een gedefineerde regel. De regel bepaald wat de nieuwe staat wordt van een cel.
 De regels worden recursief uitgevoerd.
-\textcolor{red}{Hulp nodig bij de uitleg van de regels van de 1d CA}
-\newpage
+Om de regels van de een-dimensionale CA goed te begrijpen kijken we eerst naar het aantal mogelijke combinaties die een cell met zijn buren kan hebben.
+Voor een binaire staat zijn de combinaties $111$, $110$, $101$, $100$, $011$, $010$, $001$ en $000$ mogelijk.
+Dit zal someteen nodig zijn.
+De regel van de CA wordt als nummer geschreven, bijvoorbeeld regel $110$.
+Dit nummer wordt als een 8-bits nummer geschreven. 
+Elke bit gepresenteerd dan de nieuwe staat die een cel krijgt bij de combinatie die hierboven mogelijk is.
+Stel dat we regel $110$ willen gebruiken. Dit is in 8-bits binair $01101110$.
+De regels zijn dus:
+\begin{center}
+\begin{tabular}{|m{0.6cm}|m{0.6cm}|m{0.6cm}|m{0.6cm}|m{0.6cm}|m{0.6cm}|m{0.6cm}|m{0.6cm}|}
+    \hline
+    $111$ & $110$ & $101$ & $100$ & $011$ & $010$ & $001$ & $000$ \\
+    \hline
+    $0$ & $1$ & $1$ & $0$ & $1$ & $1$ & $1$ & $0$ \\
+    \hline
+\end{tabular}
+\end{center}
+\vspace{10pt}
+Dus een levende cell met als buren twee levende cellen is dus als combinatie $111$ en zal in dit geval dus dood gaan (er staat een $0$).
 Een bekende regel bij de twee-dimensionale CA is 'the game of life'. 
 \newline
-De regel van 'the game of life' zijn als volgt:
+De regel van 'the game of life' is als volgt:
 \vspace{4pt}
 \newline
 $\bullet$ Elke levende cel met minder dan twee buren gaat dood (onderpopulatie) 
@@ -71,7 +89,16 @@ $\bullet$ Elke dode cel met precies drie buren wordt levend (reproductie)
 
 
 \section*{Implementatie en verantwoording}
-\textcolor{red}{Moet nog geschreven worden}
+Array's zijn voor een veld beter dan lijsten want een veld bevat ten eerste alleen één type (in dit geval het type 'int') 
+en array's kunnen ook alleen één type element bevatten.  
+Ten tweede veranderen de dimensies van het field niet, en bij array's mogen de dimensies ook niet meer worden veranderd na
+het maken van de array. Een dictionary is voor de regels van de een-dimensionale CA heel toepasselijk, want 
+de dictionary kan heel mooi geintepeerdeerd en gebruikt worden. 
+Namelijk de keys zijn alle mogelijke combinaties die een cell met zijn buren kan hebben
+en de values worden door de bits van het binair getal bepaald. 
+We proberen daarnaast zoveel mogelijk methodes in de abstracte klassen te zetten.
+De een-dimensionale en twee-dimensionale CA hebben bijvoorbeeld de lengte gemeen.   
+
 
 
 \section*{Algoritmes}
@@ -79,20 +106,20 @@ We hebben een abstracte class CA gemaakt die verschillende 'child' classen heeft
 \newline
 De structuur van de klassen zien er als volgt uit:
 \newline
-class CA:
+\phantom{.}class CA:
 \newline
-.\hspace{10pt}square CA class:
+\phantom{.}\hspace{12pt}square CA class:
 \newline
-.\hspace{20pt}one-dimensional CA class
+\phantom{.}\hspace{24pt}- one-dimensional CA class
 \newline
-.\hspace{20pt}two-dimensional CA class
+\phantom{.}\hspace{24pt}- two-dimensional CA class
 \vspace{6pt}
 \newline
 De datastructuren die zijn gebruik zijn 'arrays', 'lists' en 'dictionary's'. 
 De 'array' is gebruikt voor het veld waarbij de indices de plaats van het element op het veld weergeven en 
 de waarde van het element zelf de staat voorstelt.
 De dictionary wordt bij de een-dimensionale CA gebruikt voor het opzoeken welke staat een cell moet zijn met de gegeven buren.
-De lists was nodig om de lopen over de dictionary.
+De lists was nodig om te lopen over de dictionary.
 
 \textcolor{red}{Nog iets met complexity} 
 
@@ -104,8 +131,7 @@ er een lengte en 'boundary' conditie als input worden gegeven.
 Daarnaast moet er in de een-dimensionale CA een regel nummer worden gegeven.
 Bij de twee-dimensionale CA moet ook een regel worden gegeven als input, maar niet als nummer (er zijn teveel mogelijkheden).
 Een input kan zijn life. De regels van 'the game of life' worden dan gebruikt.
-Verder moet er nog een burenregel als input worden gegeven (Mooren of VonNeumann).
-
+Verder moet er nog een burenregel als input worden gegeven (Moore of VonNeumann).
 
 \section*{Resultaten}
 \textcolor{red}{Moet nog worden gedaan}
@@ -114,7 +140,15 @@ Verder moet er nog een burenregel als input worden gegeven (Mooren of VonNeumann
 \textcolor{red}{Moet nog worden gedaan}
 
 \section*{Discussie}
-\textcolor{red}{Moet nog worden gedaan}
+Er is alleen de een-dimensionale CA en twee-dimensionale 
+CA gemaakt, maar er bestaat natuurlijk ook de drie-dimensionale CA.
+Voor toekomstige versies zou een drie-dimensionale CA een goede uitbreiding zijn.
+Daarnaast zou de CA ook uitgebreid kunnen worden met CA waar de cellen meer dan een binaire staat hebben, maar wel eindig.
+Ook kan er CA worden geïnplementeerd waar de cellen niet vierkant zijn, maar bijvoorbeeld hexagonaal.
+Kortom, onze code is alleen goed voor een heel beperkt aantal CA's.
+Als laatste hadden sommige methodes in de abstracte klassen moeten worden gezet, maar het 
+is makkelijker om het eerst in de lagere klassen te stoppen.
+Voor toekomstige versies zal dit moeten worden geïmplementeerd.  
 
 \section*{Takenverdeling}
 We hebben de taken als volgt de verdeeld:
@@ -125,13 +159,15 @@ de Haas:
 1) abstracte CA klassen
 \newline
 2) twee-dimensionale CA klasse
+\newline
+3) report maken
 \vspace{6pt}
 \newline
 de Vries:
 \newline
 1) een-dimensionale CA klasse
 \newline
-\textcolor{red}{volgt meer}
+2) het bekijken van het visueel maken van de CA
 
 We hebben wel de code (dus de twee klassen) zo analoog mogelijk gemaakt.
 
