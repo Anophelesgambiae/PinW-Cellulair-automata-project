@@ -52,10 +52,13 @@ class one_dimension_CA(square_CA):
                         rule_dict, timesteps):
         ''' Return the next generation of the CA '''
 
+        # Store each generation of the CA in the field_history list so that 
+        # they can be displayed later
         field_history = []
         for t in range(0, timesteps):
             old_field = copy.deepcopy(self.field)
             field_history.append(old_field)
+
             match boundary_condition:
 
                 # Create a periodic border by adding %length when looking at
@@ -138,6 +141,6 @@ if timesteps < 1:
     print("ValueError: please give a positive value.")
     quit()
 
-# The plotted CA for the user given inputs
+# The plotted CA based on the user given inputs
 plotted_CA = one_dimension_CA(length, border_condition, rule_number,
                               starting_field, timesteps)
