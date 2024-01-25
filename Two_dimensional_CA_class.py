@@ -89,7 +89,10 @@ class two_dimension_CA(square_CA):
                     raise NameError(str(boundary_condition) + " " + "is not defined in the next_generation method + \
                                     , perhaps you made a typo")
 
-        print("CA has done " + str(timesteps) + " timesteps")    
+        print("CA has done " + str(timesteps) + " timesteps")
+        et = time.time()
+        dtime = et - st
+        print(dtime)  
         super().display_CA(self.field)
                             
     '''
@@ -165,6 +168,9 @@ neighbourhood_rule = rules[1]
 boundary_condition = rules[2] 
 timesteps = int(input("How many timesteps you want that the CA runs: ") )
 
+st = time.time()
 CA = two_dimension_CA(length, width, rule, neighbourhood_rule, boundary_condition, timesteps)
+
+
 
 
