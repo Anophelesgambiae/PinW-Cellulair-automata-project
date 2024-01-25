@@ -1,6 +1,7 @@
 
 import numpy as np
 from CA_class import CA
+import matplotlib.pyplot as plot
 
 '''
 The square class are the CA classes with square as cells. 
@@ -17,3 +18,7 @@ class square_CA(CA):
     def __init__(self, length: int, boundary_condition: str):
         self.length = length
         self.boundary_condition = boundary_condition
+
+    def display_CA(self, field):
+        plot.imshow(field, cmap='binary')
+        plot.show()    
