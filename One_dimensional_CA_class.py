@@ -96,6 +96,7 @@ class one_dimension_CA(square_CA):
 
 
 # Give the user some information on how to use the code and help the user
+# when they give unusable inputs 
 print("What should the length of the field be?")
 print("Please give your input as an integer greater than or equal to 3.")
 length = int(input())
