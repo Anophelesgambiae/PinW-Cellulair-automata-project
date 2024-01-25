@@ -16,15 +16,15 @@ The length and width must be an integer.
 The rule, neighbourhood_rule and boundary_condition must be a string.
 
 The rule is how we can define when a cell have the state 0 or 1. We have the following rules:
-- Life 
+- Life: The rule used for the CA 
 
 The neighbourhood_rule is what are the neigbours of one cell. The rules are:
-- Moore
-- vonNeumann 
+- Moore: all horizontal, vertical and diagonal adjacent cells are neighbours.  
+- vonNeumann: same as the Moore except the cell on the diagonal are not neighbours. 
 
 The boundary_condition is what we do with the cells at the boundary. The rules are:
-- periodic 
-- constant (the cells on the border are constant)
+- periodic: a borderless field (the borders of the field are contected as a donut)  
+- constant: the field have a border (thus the cells on the border are constant)
 
 '''
 class two_dimension_CA(square_CA):
@@ -86,7 +86,8 @@ class two_dimension_CA(square_CA):
                             self.set_new_state(length, width, old_field, row, column, rule, neighbourhood_rule)
 
                 case _:
-                    raise NameError(str(boundary_condition) + " " + "is not defined in the next_generation method, perhaps you made a typo")
+                    raise NameError(str(boundary_condition) + " " + "is not defined in the next_generation method + \
+                                    , perhaps you made a typo")
 
         print("CA has done " + str(timesteps) + " timesteps")    
         super().display_CA(self.field)
@@ -121,7 +122,8 @@ class two_dimension_CA(square_CA):
                 else: new_state = old_state 
 
             case _:
-                raise NameError(str(rule) + " " + "is not defined in the set_new_state method, perhaps you made a typo")    
+                raise NameError(str(rule) + " " + "is not defined in the set_new_state method, + \
+                                 perhaps you made a typo")    
 
         self.field[row][column] = new_state    
 
@@ -148,7 +150,8 @@ class two_dimension_CA(square_CA):
                                     old_field[row][(column+1) % width] + \
                                     old_field[(row+1) % length][column] 
             case _:
-                raise NameError(str(neighbourhood_rule) + " " + "is not defined in the return_neighbour_sum method, perhaps you made a typo" )
+                raise NameError(str(neighbourhood_rule) + " " + "is not defined in the return_neighbour_sum method + \
+                                , perhaps you made a typo" )
 
         return neighbour_sum
 
