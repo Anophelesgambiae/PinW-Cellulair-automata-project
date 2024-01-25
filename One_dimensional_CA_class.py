@@ -2,13 +2,14 @@ import numpy as np
 import time
 import copy
 import msvcrt as ms
+import matplotlib.axes as plt
 
 from Square_CA_class import square_CA
 
 
 class one_dimension_CA(square_CA):
     '''
-    Here a class for one dimensional CA's is created.
+    A class for one dimensional CA's is created.
 
     The inputs are as follows:
     -length: An integer of the length of the field
@@ -17,7 +18,7 @@ class one_dimension_CA(square_CA):
     -rule_number: The rule number used for the CA
     '''
 
-    def __init__(self, length, boundary_condition, rule_number) -> None:
+    def __init__(self, length, boundary_condition, rule_number, starting_field) -> None:
         '''Return the starting field and the dictionary of the CA''' 
 
         # Create the dictionary for the rule. The input represents the
@@ -35,12 +36,14 @@ class one_dimension_CA(square_CA):
             i += 1
         self.rule_dict = rule_dict
 
-        # Initialize the field where the elements have a 50% chance to be a
-        # zero and 50% chance to be a one
-        self.field = np.zeros(length, dtype = int)
-        for item in range(0, len(self.field)):
-            self.field[item] = np.random.choice(np.arange(0, 2), p=[0.5, 0.5])
-
+        if starting_field == "random":
+            
+            # Initialize the field where the elements have a 50% chance to be
+            # a zero and 50% chance to be a one
+            self.field = np.zeros(length, dtype = int)
+            for item in range(0, len(self.field)):
+                self.field[item] = np.random.choice(np.arange(0, 2), p=[0.5, 0.5])
+        
         print(self.field)
         self.Next_generation(length, boundary_condition, rule_dict)
 
@@ -75,18 +78,24 @@ class one_dimension_CA(square_CA):
                         + str(old_field[(element+1)])
                         ]
                         self.field[element] = newstate
-
-            print(self.field)
+            self.plot()
 
             # Stop the run when the spacebar is pressed
             if ms.kbhit():
                 if ord(ms.getch()) == 32:
                     break
 
+            print(self.field)
+
     def __str__(self):
         '''Return a string of the field'''
 
         return str(self.field)
 
-Printed_CA = one_dimension_CA(int(input()), input(), int(input()))
-'''Return the CA for the given input'''
+    # Plot the CA for the given input
+    def plot(self):
+        plt.matshow(self.field)
+        plt.show()
+
+plotted_CA = one_dimension_CA(int(input()), input(),
+                              int(input()), input())
