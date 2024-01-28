@@ -84,8 +84,9 @@ $\bullet$ Elke levende cel met meer dan drie buren gaat dood (overpopulatie)
 \newline 
 $\bullet$ Elke dode cel met precies drie buren wordt levend (reproductie) 
 \newline
-\vspace{4pt}
-\textcolor{red}{De vraag en rest moet nog geschreven worden}
+\vspace{8pt}
+De vraag hierbij is hoe we een CA class kunnen met de een-dimensionale CA en twee-dimensionale CA
+waarbij de gebruiker zoveel mogelijk input kan geven zodat de class in vele toepassingen kan worden gebruikt. 
 
 
 \section*{Implementatie en verantwoording}
@@ -98,7 +99,6 @@ Namelijk de keys zijn alle mogelijke combinaties die een cell met zijn buren kan
 en de values worden door de bits van het binair getal bepaald. 
 We proberen daarnaast zoveel mogelijk methodes in de abstracte klassen te zetten.
 De een-dimensionale en twee-dimensionale CA hebben bijvoorbeeld de lengte gemeen.   
-
 
 
 \section*{Algoritmes}
@@ -122,13 +122,34 @@ De dictionary wordt bij de een-dimensionale CA gebruikt voor het opzoeken welke 
 De lists was nodig om te lopen over de dictionary.
 \newline
 Doordat het progamma vrij veel methodes is het moeilijk om 
-de time complexiteit te bepalen door naar het aantal operaties te kijken.
+de tijd complexiteit te bepalen door naar het aantal operaties te kijken.
 Makkelijker is om de module time te gebruiken en de verschil van tijd tussen het starten van het progamma en wanneer het progamma klaar is.
-Dit geeft een indicatie over time complexiteit.  
+Dit geeft een indicatie over tijd complexiteit.  
 We hebben bij de een-dimensionale CA en twee-dimensionale CA verschillende combinaties 
 inputs gedaan. Elke meting is 3 keer gedaan en hiervan is het gemiddelde genomen.
 De gemiddelden van de een-dimensionale CA staan in tabel 1 en die 
-van de twee-dimensionale CA in tabel 2.
+van de twee-dimensionale CA in tabel 2. De constante parameters zijn als volgt:
+\newline
+een-dimensionale CA: (periodic, regel 110)
+\newline
+twee-dimensionale CA: (Life, Moore, periodic).
+
+\begin{table*}
+    \centering
+    \begin{tabular}{|m{1.2cm}|m{2.0cm}|m{2.0cm}|m{2.0cm}|}
+        \hline
+        $\phantom{.}$ & $10$ & $2500$ & $10000$ \\
+        \hline
+        $10$ & $0.0112$ & $0.0933$ & $0.301$ \\
+        \hline
+        $100$ & $0.0461$ & $0.493$ & $1.88$ \\
+        \hline
+        $1000$ & $0.250$ & $4.61$ & $17.6$ \\
+        \hline
+    \end{tabular}
+    \caption{The tijd complexiteit van de een-dimensionale CA}
+    \label{tbl:1dim}
+\end{table*}
 
 \begin{table*}
     \centering
@@ -136,18 +157,21 @@ van de twee-dimensionale CA in tabel 2.
         \hline
         $\phantom{.}$ & $10x10$ & $50x50$ & $100x100$ \\
         \hline
-        $10$ & $0.0150$ & $0.1134$ & $0.3733$ \\
+        $10$ & $0.0150$ & $0.114$ & $0.373$ \\
         \hline
-        $100$ & $0.0820$ & $0.7085$ & $2.675$ \\
+        $100$ & $0.0820$ & $0.708$ & $2.68$ \\
         \hline
-        $1000$ & $0.6518$ & $6.511$ & $25.49$ \\
+        $1000$ & $0.652$ & $6.51$ & $25.5$ \\
         \hline
     \end{tabular}
-    \caption{The resultaten van de twee-dimensionale CA}
-    \label{tbl:nummers}
+    \caption{The tijd complexiteit van de twee-dimensionale CA}
+    \label{tbl:2dim}
 \end{table*}
 
 \section*{Code}
+Een link voor de code is hier: 
+\textcolor{blue}{https://github.com/Anophelesgambiae/PinW-Cellulair-automata-project}
+\newline
 Bij het opstarten van het progamma wordt er van de gebruiker input gevraagd.
 \newline
 Bij zowel de een-dimensionale als twee-dimensionale CA moet 
@@ -158,7 +182,13 @@ Een input kan zijn life. De regels van 'the game of life' worden dan gebruikt.
 Verder moet er nog een burenregel als input worden gegeven (Moore of VonNeumann).
 
 \section*{Resultaten}
-\textcolor{red}{Moet nog worden gedaan}
+Dit zijn de patronen die deze CA's kunnen maken:
+\newline
+\graphicspath{ {./CA_project_2024/} }
+\includegraphics[scale=0.6]{1dimCA_100__rule110_periodic_100}
+\includegraphics[scale=0.6]{1dimCA_100__rule30_constant_100}
+\includegraphics[scale=0.6]{2dimCA_100x100__Life_Moore_periodic_100}
+\includegraphics[scale=0.6]{2dimCA_100x100__Life_vonNeumann_periodic_100}
 
 \section*{Conclusie}
 \textcolor{red}{Moet nog worden gedaan}
