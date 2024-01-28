@@ -120,8 +120,32 @@ De 'array' is gebruikt voor het veld waarbij de indices de plaats van het elemen
 de waarde van het element zelf de staat voorstelt.
 De dictionary wordt bij de een-dimensionale CA gebruikt voor het opzoeken welke staat een cell moet zijn met de gegeven buren.
 De lists was nodig om te lopen over de dictionary.
+\newline
+Doordat het progamma vrij veel methodes is het moeilijk om 
+de time complexiteit te bepalen door naar het aantal operaties te kijken.
+Makkelijker is om de module time te gebruiken en de verschil van tijd tussen het starten van het progamma en wanneer het progamma klaar is.
+Dit geeft een indicatie over time complexiteit.  
+We hebben bij de een-dimensionale CA en twee-dimensionale CA verschillende combinaties 
+inputs gedaan. Elke meting is 3 keer gedaan en hiervan is het gemiddelde genomen.
+De gemiddelden van de een-dimensionale CA staan in tabel 1 en die 
+van de twee-dimensionale CA in tabel 2.
 
-\textcolor{red}{Nog iets met complexity} 
+\begin{table*}
+    \centering
+    \begin{tabular}{|m{1.2cm}|m{2.0cm}|m{2.0cm}|m{2.0cm}|}
+        \hline
+        $\phantom{.}$ & $10x10$ & $50x50$ & $100x100$ \\
+        \hline
+        $10$ & $0.0150$ & $0.1134$ & $0.3733$ \\
+        \hline
+        $100$ & $0.0820$ & $0.7085$ & $2.675$ \\
+        \hline
+        $1000$ & $0.6518$ & $6.511$ & $25.49$ \\
+        \hline
+    \end{tabular}
+    \caption{The resultaten van de twee-dimensionale CA}
+    \label{tbl:nummers}
+\end{table*}
 
 \section*{Code}
 Bij het opstarten van het progamma wordt er van de gebruiker input gevraagd.
@@ -162,6 +186,8 @@ Robert de Haas:
 2) twee-dimensionale CA klasse
 \newline
 3) report maken
+\newline
+4) complexiteit meten
 \vspace{6pt}
 \newline
 Fabian de Vries:
