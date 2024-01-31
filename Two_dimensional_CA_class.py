@@ -10,20 +10,21 @@ from Square_CA_class import square_CA
 
 
 '''
-This a class of a two dimensional Cellulair automata (CA). The field is thus a retangle with a predefined length and width.
+This a class of a two dimensional Cellulair automata (CA). 
+The field is thus a retangle with a predefined length and width.
 
 The length and width must be an integer.
 The rule, neighbourhood_rule and boundary_condition must be a string.
 
 The rule is how we can define when a cell have the state 0 or 1. We have the following rules:
-- Life: The rule used for the CA 
+- Life: The rule used for the game of Life CA 
 
 The neighbourhood_rule is what are the neigbours of one cell. The rules are:
 - Moore: all horizontal, vertical and diagonal adjacent cells are neighbours.  
 - vonNeumann: same as the Moore except the cell on the diagonal are not neighbours. 
 
 The boundary_condition is what we do with the cells at the boundary. The rules are:
-- periodic: a borderless field (the borders of the field are contected as a donut)  
+- periodic: a borderless field (the borders of the field are connected as a donut)  
 - constant: the field have a border (thus the cells on the border are constant)
 
 '''
@@ -35,8 +36,6 @@ class two_dimension_CA(square_CA):
     def __init__(self, length: int, width: int, rule: str, neighbourhood_rule: str, 
                  boundary_condition: str, timesteps: int):
 
-        if length <= 0 or width <= 0:
-            raise ValueError("length and width must be greather than zero.")
         
         self.width: int = width
         self.neighbourhood_rule: str = neighbourhood_rule
@@ -57,12 +56,14 @@ class two_dimension_CA(square_CA):
     def __str__(self) -> str:
         return str(self.field)    
     '''
-    Define for all cells on the field the new state (0 or 1). This function run until the user press space bar.
-    You can define new boundary_condition to make a new case with a new name in a string. In this case you define with a for loop
-    which cells can change.
+    Define for all cells on the field the new state (0 or 1). 
+    This function runs the given timesteps or stops when the user press space or esc.
+    You can define new boundary_condition to make a new case with a new name in a string. 
+    In this case you define with a for loop which cells can change.
     '''
     def next_generation(self, length: int, width: int, rule: str, neighbourhood_rule: str, boundary_condition: str, timesteps: int):
         
+
         for t in range(0, timesteps):
             
             # Stops the run when you press space or esc.
@@ -86,13 +87,11 @@ class two_dimension_CA(square_CA):
                             self.set_new_state(length, width, old_field, row, column, rule, neighbourhood_rule)
 
                 case _:
-                    raise NameError(str(boundary_condition) + " " + "is not defined in the next_generation method + \
-                                    , perhaps you made a typo")
+                    print("NameError: " + str(boundary_condition) + 
+                          "is not defined in the next_generation method, perhaps you made a typo" )
+                    quit()
 
-        print("CA has done " + str(timesteps) + " timesteps")
-        et = time.time()
-        dtime = et - st
-        print(dtime)  
+        print("CA has done " + str(timesteps) + " timesteps") 
         super().display_CA(self.field)
                             
     '''
@@ -125,8 +124,9 @@ class two_dimension_CA(square_CA):
                 else: new_state = old_state 
 
             case _:
-                raise NameError(str(rule) + " " + "is not defined in the set_new_state method, + \
-                                 perhaps you made a typo")    
+                print("NameError: " + str(rule) + \
+                      "is not defined in the set_new_state method, perhaps you made a typo" )
+                quit()    
 
         self.field[row][column] = new_state    
 
@@ -153,22 +153,51 @@ class two_dimension_CA(square_CA):
                                     old_field[row][(column+1) % width] + \
                                     old_field[(row+1) % length][column] 
             case _:
-                raise NameError(str(neighbourhood_rule) + " " + "is not defined in the return_neighbour_sum method + \
-                                , perhaps you made a typo" )
+                print("NameError: " + str(neighbourhood_rule) + \
+                      "is not defined in the return_neighbour_sum method, perhaps you made a typo" )
+                quit()
 
         return neighbour_sum
 
-# Make a two dimensional CA with the inputs of the user.
-dimensions = input("What is the length and width of the CA? ").split(" ")
-length = int(dimensions[0])
-width = int(dimensions[1])
-rules = input("What is the rule, neighbourhood rule and boundary condition?: ").split(" ")
-rule = rules[0]
-neighbourhood_rule = rules[1]
-boundary_condition = rules[2] 
-timesteps = int(input("How many timesteps you want that the CA runs: ") )
 
-st = time.time()
+# Make a two dimensional CA with the inputs of the user.
+dimensions: list[str] = input("What is the length and width of the CA? ").split(" ")
+
+try:
+    length: int = int(dimensions[0])
+except ValueError:
+    print("TypeError: length must be an integer")
+    quit()     
+
+try:
+    width: int = int(dimensions[1])
+except ValueError:
+    print("TypeError: width must be an integer")
+    quit()        
+
+if length < 3 or length > 1000:
+    print("ValueError: length must be between 3 and 1000, your length was " + str(length))
+    quit()
+
+if width < 3 or width > 1000:
+    print("ValueError: width must be between 3 and 1000, your width was " + str(width))
+    quit()    
+
+rules: list[str] = input("What is the rule, neighbourhood rule and boundary condition?: ").split(" ")
+
+rule: str = rules[0]
+neighbourhood_rule: str = rules[1]
+boundary_condition: str = rules[2]
+
+try:    
+    timesteps: int = int(input("How many timesteps you want that the CA runs: ") )
+except ValueError:
+    print("Timesteps must be a integer")
+    quit()
+
+if timesteps < 0 or timesteps > 1000:
+    print("ValueError: timesteps must be between 0 and 1000, your timesteps was " + str(timesteps))    
+
 CA = two_dimension_CA(length, width, rule, neighbourhood_rule, boundary_condition, timesteps)
 
 
