@@ -19,7 +19,7 @@ The classes under the square classes use the display_CA method.
 class square_CA(CA):
 
     def __init__(self, length: int, boundary_condition: str):
-        self.length: = length
+        self.length = length
         self.boundary_condition = boundary_condition
 
     def display_CA(self, field):
