@@ -192,7 +192,7 @@ boundary_condition: str = rules[2]
 try:    
     timesteps: int = int(input("How many timesteps you want that the CA runs: ") )
 except ValueError:
-    print("Timesteps must be a integer")
+    print("TypeError: timesteps must be a integer")
     quit()
 
 if timesteps < 0 or timesteps > 1000:
