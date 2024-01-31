@@ -9,7 +9,7 @@ We know that every CA have timesteps.
 class CA():
 
     def __init__(self, timesteps: int):
-        self.timesteps: int = timesteps
+        self.timesteps = timesteps
 
 
 
