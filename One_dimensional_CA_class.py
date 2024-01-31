@@ -1,5 +1,6 @@
 import numpy as np
 import time
+import types
 import copy
 import msvcrt as ms
 import matplotlib as plot
@@ -18,45 +19,45 @@ class one_dimension_CA(square_CA):
     -rule_number: The rule number used for the CA
     '''
 
-    def __init__(self, length, boundary_condition,
-                 rule_number, starting_field, timesteps) -> None:
+    def __init__(self, length: int, boundary_condition: str,
+                 rule_number: int, starting_field, timesteps: int):
         '''Return the starting field and the dictionary of the CA''' 
 
         # Create the dictionary for the rule. The input represents the
         # element's neighbour, the element itself and the element's right
         # neighbour
-        rule_dict = {"111":0, "110":0, "101":0, "100":0, 
+        rule_dict: dict = {"111":0, "110":0, "101":0, "100":0, 
                      "011":0, "010":0, "001":0, "000":0}
-        binary_number = "{0:08b}".format(rule_number)
-        binary_list = list(binary_number)
-        key_items_list = ["111", "110", "101", "100",
+        binary_number: str = "{0:08b}".format(rule_number)
+        binary_list: list = list(binary_number)
+        key_items_list: list = ["111", "110", "101", "100",
                           "011", "010", "001", "000"]
         i = 0
         for key in key_items_list:
             rule_dict[key] = int(binary_list[i])
             i += 1
-        self.rule_dict = rule_dict
+        self.rule_dict: dict = rule_dict
 
         if starting_field == "random":
             
             # Initialize the field where the elements have a 50% chance to be
             # a zero and 50% chance to be a one
-            self.field = np.zeros(length, dtype = int)
+            self.field: np.array = np.zeros(length, dtype = int)
             for item in range(0, len(self.field)):
                 self.field[item] = np.random.choice(np.arange(0, 2),
                                                     p=[0.5, 0.5])
         
         self.Next_generation(length, boundary_condition, rule_dict, timesteps)
 
-    def Next_generation(self, length, boundary_condition,
-                        rule_dict, timesteps):
+    def Next_generation(self, length: int, boundary_condition: str,
+                        rule_dict: dict, timesteps: int):
         ''' Return the next generation of the CA '''
 
         # Store each generation of the CA in the field_history list so that 
         # they can be displayed later
-        field_history = []
+        field_history: list = []
         for t in range(0, timesteps):
-            old_field = copy.deepcopy(self.field)
+            old_field: np.array = copy.deepcopy(self.field)
             field_history.append(old_field)
 
             match boundary_condition:
@@ -84,11 +85,16 @@ class one_dimension_CA(square_CA):
                         + str(old_field[(element+1)])
                         ]
                         self.field[element] = newstate
-        
+                case _:
+                    print("NameError: " + str(boundary_condition) + 
+                          "is not defined in the next_generation method, perhaps you made a typo" )
+                    quit()
+
             # Stop the run when the spacebar or escape is pressed
             if ms.kbhit():
                 if ord(ms.getch()) in [27, 32]:
                     quit()
+
         field_history.append(self.field)
         super().display_CA(field_history)
 
@@ -102,22 +108,34 @@ class one_dimension_CA(square_CA):
 # when they give unusable inputs 
 print("What should the length of the field be?")
 print("Please give your input as an integer greater than or equal to 3.")
-length = int(input())
-if length < 3:
-    print("ValueError: Please choose a value greater than or equal to 3.")
+
+try:
+    length: int = int(input())
+except ValueError:
+    print("TypeError: length must be an integer")
     quit()
+
+if length < 3 or length > 1000:
+    print("ValueError: Please choose a value between 3 and 1000, your length was " + str(length))
+    quit()
+
 print("What border condition do you want to use?")
 print("You can choose between 'periodic' and 'constant'.")
+
 border_condition = input()
-if border_condition not in ["periodic", "constant"]:
-    print("NameError: perhaps you made a typo?")
-    quit()
+
 print("What rule number do you want to use?")
 print("You can choose an integer between 0 and 255.")
-rule_number = int(input())
-if rule_number > 255 or rule_number < 0:
-    print("ValueError: please give an integer between 0 and 255.")
+try:
+    rule_number = int(input())
+except ValueError:
+    print("TypeError: rule_number must be an integer")
     quit()
+
+if rule_number < 0 or rule_number > 255:
+    print("ValueError: please give an integer between 0 and 255, your rule_number was " + str(rule_number))
+    quit()
+
 print("What starting field do you want to use?")
 print("You can give a self chosen field in the form of an array or you can")
 print("let a random field generate.")
@@ -134,11 +152,18 @@ if "]" and "[" in starting_field:
 elif starting_field != "random":
     print("NameError: perhaps you made a typo.")
     quit()
+
 print("How many timesteps do you want to generate?")
 print("Please give your input as a postive integer.")
-timesteps = int(input())
-if timesteps < 1:
-    print("ValueError: please give a positive value.")
+
+try:
+    timesteps = int(input())
+except ValueError:
+    print("TypeError: timesteps must be an integer")
+    quit()
+
+if timesteps < 0 or timesteps > 1000:
+    print("ValueError: timesteps must be between 0 and 1000, your timesteps was " + str(timesteps))
     quit()
 
 # The plotted CA based on the user given inputs
