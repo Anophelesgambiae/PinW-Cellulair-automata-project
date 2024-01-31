@@ -1,10 +1,15 @@
+import types
 
-import numpy as np
+'''
+This is the abstract class of the CA.
+We know that every CA have timesteps. 
+
+'''
 
 class CA():
 
     def __init__(self, timesteps: int):
-        self.timesteps = timesteps
+        self.timesteps: int = timesteps
 
 
 
