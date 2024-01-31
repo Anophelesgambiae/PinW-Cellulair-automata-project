@@ -85,8 +85,7 @@ $\bullet$ Elke levende cel met meer dan drie buren gaat dood (overpopulatie)
 $\bullet$ Elke dode cel met precies drie buren wordt levend (reproductie) 
 \newline
 \vspace{8pt}
-De vraag hierbij is hoe we een CA class kunnen met de een-dimensionale CA en twee-dimensionale CA
-waarbij de gebruiker zoveel mogelijk input kan geven zodat de class in vele toepassingen kan worden gebruikt. 
+\textcolor{red}{Vraag en rest}
 
 
 \section*{Implementatie en verantwoording}
@@ -138,16 +137,16 @@ twee-dimensionale CA: (Life, Moore, periodic).
     \centering
     \begin{tabular}{|m{1.2cm}|m{2.0cm}|m{2.0cm}|m{2.0cm}|}
         \hline
-        $\phantom{.}$ & $10$ & $2500$ & $10000$ \\
+        $\phantom{.}$ & $\textbf{10}$ & $\textbf{2500}$ & $\textbf{10000}$ \\
         \hline
-        $10$ & $0.0112$ & $0.0933$ & $0.301$ \\
+        $\textbf{10}$ & $0.0112$ & $0.0933$ & $0.301$ \\
         \hline
-        $100$ & $0.0461$ & $0.493$ & $1.88$ \\
+        $\textbf{100}$ & $0.0461$ & $0.493$ & $1.88$ \\
         \hline
-        $1000$ & $0.250$ & $4.61$ & $17.6$ \\
+        $\textbf{1000}$ & $0.250$ & $4.61$ & $17.6$ \\
         \hline
     \end{tabular}
-    \caption{The tijd complexiteit van de een-dimensionale CA}
+    \caption{The tijd complexiteit van de een-dimensionale CA in seconden}
     \label{tbl:1dim}
 \end{table*}
 
@@ -155,16 +154,16 @@ twee-dimensionale CA: (Life, Moore, periodic).
     \centering
     \begin{tabular}{|m{1.2cm}|m{2.0cm}|m{2.0cm}|m{2.0cm}|}
         \hline
-        $\phantom{.}$ & $10x10$ & $50x50$ & $100x100$ \\
+        $\phantom{.}$ & $\textbf{10x10}$ & $\textbf{50x50}$ & $\textbf{100x100}$ \\
         \hline
-        $10$ & $0.0150$ & $0.114$ & $0.373$ \\
+        $\textbf{10}$ & $0.0150$ & $0.114$ & $0.373$ \\
         \hline
-        $100$ & $0.0820$ & $0.708$ & $2.68$ \\
+        $\textbf{100}$ & $0.0820$ & $0.708$ & $2.68$ \\
         \hline
-        $1000$ & $0.652$ & $6.51$ & $25.5$ \\
+        $\textbf{1000}$ & $0.652$ & $6.51$ & $25.5$ \\
         \hline
     \end{tabular}
-    \caption{The tijd complexiteit van de twee-dimensionale CA}
+    \caption{The tijd complexiteit van de twee-dimensionale CA in seconden}
     \label{tbl:2dim}
 \end{table*}
 
@@ -189,6 +188,23 @@ Dit zijn de patronen die deze CA's kunnen maken:
 \includegraphics[scale=0.6]{1dimCA_100__rule30_constant_100}
 \includegraphics[scale=0.6]{2dimCA_100x100__Life_Moore_periodic_100}
 \includegraphics[scale=0.6]{2dimCA_100x100__Life_vonNeumann_periodic_100}
+\newline
+Dit zijn de parameters die zijn gebruikt 
+bij de een-dimensionale CA in de notatie 
+(dimensies, 'rulenumber', 'boundary condition', 'timesteps'):
+\newline
+Linksboven: (100, 110, 'periodic', 100)
+\newline
+Rechtsboven: (100, 30, 'constant', 100)
+\newline
+Dit zijn de parameters die zijn gebruikt 
+bij de twee-dimensionale CA in de notatie 
+(dimensies, 'rule', 'boundary condition', 'neighbourrule', 'timesteps'):
+\newline
+Linksonder: (100x100, 'Life', 'Moore', 'periodic', 100)
+\newline
+Rechtsonder: (100x100, 'Life', 'VonNeumann', 'periodic', 100)
+
 
 \section*{Conclusie}
 \textcolor{red}{Moet nog worden gedaan}
