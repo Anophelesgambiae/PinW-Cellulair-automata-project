@@ -1,7 +1,8 @@
 
 import numpy as np
-from CA_class import CA
 import matplotlib.pyplot as plot
+
+from CA_class import CA
 
 '''
 The square class are the CA classes with square as cells. 
@@ -11,6 +12,8 @@ All square CA have a length and a boundary condition.
 These are the different boundary conditions:
 - periodic
 - constant
+
+The classes under the square classes use the display_CA method.
 
 '''
 class square_CA(CA):
