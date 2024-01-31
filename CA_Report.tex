@@ -36,30 +36,30 @@ de staat levend (met binair het getal 1) of dood (met binair het getal 0) kunnen
 Een CA heeft een begin situatie, dus een vast begin met cellen met verschillende staten.
 De volgende generatie cellen wordt recursief bepaald. 
 De regels van de CA bepalen hoe deze recursie wordt uitgevoerd.
-Wij hebben twee specifieke CA's geprogrammeerd, de een-dimensionale en 
-twee-dimensionale CA, beide met een vierkante veld. 
+Wij hebben twee specifieke CA's geprogrammeerd, de eendimensionale en de
+tweedimensionale CA, beide met een vierkante veld. 
 De cellen zijn dus vierkant  
 We zullen nu de belangrijkste parameters van een CA beschrijven.
-De een-dimensionale CA heeft een lengte en de twee-dimensionale een lengte en breedte.
+De één-dimensionale CA heeft een lengte en de twee-dimensionale een lengte en een breedte.
 Omdat een computer niet een oneindig groot veld kan maken is het belangrijk dat 
 er met de cellen in de grens van het veld iets apart wordt gedaan. Er moet een 'boundary' defintie worden gegeven.
 Bij de constante 'boundary' definitie laten we de cellen bij de border constant.
-Bij de periodieke 'boundary' definitie wordt de grenzen van het veld als een donut verbonden.
+Bij de periodieke 'boundary' definitie worden de grenzen van het veld als een donut verbonden.
 Elke cel heeft buren om zich heen die bepalen wat de nieuwe staat van een cel is.
-Bij de twee-dimensionale CA zijn er in ieder geval twee soorten buren mogelijk, de Moore buren en de VonNeumann buren.
-Bij de Moore buren worden alle aangrenzende cellen (dus ook diagonaal) als buren gerekend.
-De VonNeumann buren is hetzelfde als die van Moore buren behalve dat de buren die diagonaal liggen niet meetellen.
-Bij de een-dimensionale CA zijn de linker- en rechterkant van een cell de buren.
-Elke CA heeft nog een gedefineerde regel. De regel bepaald wat de nieuwe staat wordt van een cel.
+Bij de tweedimensionale CA zijn er in ieder geval twee soorten buren mogelijk, de Moore burenregel en de VonNeumann burenregel.
+Bij de Moore buren worden alle aangrenzende cellen (dus ook diagonaal aangrenzend) als buren gerekend.
+De VonNeumann burenregel is hetzelfde als die van Moore buren behalve dat de buren die diagonaal liggen niet meetellen.
+Bij de eendimensionale CA zijn de linker- en rechterkant van een cel de buren.
+Elke CA heeft nog een gedefinieerde regel. De regel bepaalt wat de nieuwe staat wordt van een cel.
 De regels worden recursief uitgevoerd.
-Om de regels van de een-dimensionale CA goed te begrijpen kijken we eerst naar het aantal mogelijke combinaties die een cell met zijn buren kan hebben.
+Om de regels van de eendimensionale CA goed te begrijpen kijken we eerst naar het aantal mogelijke combinaties die een cel met zijn buren kan hebben.
 Voor een binaire staat zijn de combinaties $111$, $110$, $101$, $100$, $011$, $010$, $001$ en $000$ mogelijk.
-Dit zal someteen nodig zijn.
+Dit zal zometeen nodig zijn.
 De regel van de CA wordt als nummer geschreven, bijvoorbeeld regel $110$.
 Dit nummer wordt als een 8-bits nummer geschreven. 
-Elke bit gepresenteerd dan de nieuwe staat die een cel krijgt bij de combinatie die hierboven mogelijk is.
+Elke bit representeert dan de nieuwe staat die een cel krijgt bij de combinatie die hierboven mogelijk is.
 Stel dat we regel $110$ willen gebruiken. Dit is in 8-bits binair $01101110$.
-De regels zijn dus:
+De regels zijn dan:
 \begin{center}
 \begin{tabular}{|m{0.6cm}|m{0.6cm}|m{0.6cm}|m{0.6cm}|m{0.6cm}|m{0.6cm}|m{0.6cm}|m{0.6cm}|}
     \hline
@@ -70,19 +70,19 @@ De regels zijn dus:
 \end{tabular}
 \end{center}
 \vspace{10pt}
-Dus een levende cell met als buren twee levende cellen is dus als combinatie $111$ en zal in dit geval dus dood gaan (er staat een $0$).
+Dus een levende cel met als buren twee levende cellen is dus samen $111$ en zal in dit geval dus dood gaan (er staat een $0$).
 Een bekende regel bij de twee-dimensionale CA is 'the game of life'. 
 \newline
 De regel van 'the game of life' is als volgt:
 \vspace{4pt}
 \newline
-$\bullet$ Elke levende cel met minder dan twee buren gaat dood (onderpopulatie) 
+$\bullet$ Elke levende cel met minder dan twee buren gaat dood (onderpopulatie). 
 \newline 
 $\bullet$ Elke levende cel met twee of drie buren blijft levend.
 \newline
-$\bullet$ Elke levende cel met meer dan drie buren gaat dood (overpopulatie)
+$\bullet$ Elke levende cel met meer dan drie buren gaat dood (overpopulatie).
 \newline 
-$\bullet$ Elke dode cel met precies drie buren wordt levend (reproductie) 
+$\bullet$ Elke dode cel met precies drie buren wordt levend (reproductie).
 \newline
 \vspace{8pt}
 \textcolor{red}{Vraag en rest}
@@ -92,12 +92,12 @@ $\bullet$ Elke dode cel met precies drie buren wordt levend (reproductie)
 Array's zijn voor een veld beter dan lijsten want een veld bevat ten eerste alleen één type (in dit geval het type 'int') 
 en array's kunnen ook alleen één type element bevatten.  
 Ten tweede veranderen de dimensies van het field niet, en bij array's mogen de dimensies ook niet meer worden veranderd na
-het maken van de array. Een dictionary is voor de regels van de een-dimensionale CA heel toepasselijk, want 
-de dictionary kan heel mooi geintepeerdeerd en gebruikt worden. 
-Namelijk de keys zijn alle mogelijke combinaties die een cell met zijn buren kan hebben
+het maken van de array. Een dictionary is voor de regels van de eendimensionale CA heel toepasselijk, want 
+de dictionary kan heel mooi geïnterpreteerd en gebruikt worden. 
+Namelijk de keys zijn alle mogelijke combinaties die een cel met zijn buren kan hebben
 en de values worden door de bits van het binair getal bepaald. 
 We proberen daarnaast zoveel mogelijk methodes in de abstracte klassen te zetten.
-De een-dimensionale en twee-dimensionale CA hebben bijvoorbeeld de lengte gemeen.   
+De eendimensionale en tweedimensionale CA hebben bijvoorbeeld de lengte gemeen.   
 
 
 \section*{Algoritmes}
@@ -114,24 +114,24 @@ De structuur van de klassen zien er als volgt uit:
 \phantom{.}\hspace{24pt}- two-dimensional CA class
 \vspace{6pt}
 \newline
-De datastructuren die zijn gebruik zijn 'arrays', 'lists' en 'dictionary's'. 
+De datastructuren die zijn gebruik zijn 'arrays', 'lists' en 'dictionaries'. 
 De 'array' is gebruikt voor het veld waarbij de indices de plaats van het element op het veld weergeven en 
 de waarde van het element zelf de staat voorstelt.
-De dictionary wordt bij de een-dimensionale CA gebruikt voor het opzoeken welke staat een cell moet zijn met de gegeven buren.
+De dictionary wordt bij de eendimensionale CA gebruikt voor het opzoeken welke staat een cel moet worden met de gegeven buren.
 De lists was nodig om te lopen over de dictionary.
 \newline
-Doordat het progamma vrij veel methodes is het moeilijk om 
-de tijd complexiteit te bepalen door naar het aantal operaties te kijken.
-Makkelijker is om de module time te gebruiken en de verschil van tijd tussen het starten van het progamma en wanneer het progamma klaar is.
-Dit geeft een indicatie over tijd complexiteit.  
-We hebben bij de een-dimensionale CA en twee-dimensionale CA verschillende combinaties 
+Doordat het progamma vrij veel code uitvoert is het moeilijk om 
+de tijdscomplexiteit te bepalen door naar het aantal operaties te kijken.
+Makkelijker is om de module time te gebruiken en het verschil in tijd tussen het starten van het progamma en wanneer het progamma klaar is.
+Dit geeft een indicatie over tijdscomplexiteit.  
+We hebben bij de eendimensionale CA en tweedimensionale CA verschillende combinaties 
 inputs gedaan. Elke meting is 3 keer gedaan en hiervan is het gemiddelde genomen.
-De gemiddelden van de een-dimensionale CA staan in tabel 1 en die 
-van de twee-dimensionale CA in tabel 2. De constante parameters zijn als volgt:
+De gemiddelden van de eendimensionale CA staan in tabel 1 en die 
+van de tweedimensionale CA in tabel 2. De constante parameters zijn als volgt:
 \newline
-een-dimensionale CA: (periodic, regel 110)
+eendimensionale CA: (periodic, regel 110)
 \newline
-twee-dimensionale CA: (Life, Moore, periodic).
+tweedimensionale CA: (Life, Moore, periodic).
 
 \begin{table*}
     \centering
@@ -146,7 +146,7 @@ twee-dimensionale CA: (Life, Moore, periodic).
         $\textbf{1000}$ & $0.250$ & $4.61$ & $17.6$ \\
         \hline
     \end{tabular}
-    \caption{The tijd complexiteit van de een-dimensionale CA in seconden}
+    \caption{De tijdscomplexiteit van de eendimensionale CA in seconden}
     \label{tbl:1dim}
 \end{table*}
 
@@ -163,22 +163,47 @@ twee-dimensionale CA: (Life, Moore, periodic).
         $\textbf{1000}$ & $0.652$ & $6.51$ & $25.5$ \\
         \hline
     \end{tabular}
-    \caption{The tijd complexiteit van de twee-dimensionale CA in seconden}
+    \caption{De tijdscomplexiteit van de tweedimensionale CA in seconden}
     \label{tbl:2dim}
 \end{table*}
 
 \section*{Code}
-Een link voor de code is hier: 
+Hieronder een link naar de code: 
 \textcolor{blue}{https://github.com/Anophelesgambiae/PinW-Cellulair-automata-project}
 \newline
 Bij het opstarten van het progamma wordt er van de gebruiker input gevraagd.
 \newline
-Bij zowel de een-dimensionale als twee-dimensionale CA moet 
+Bij zowel de eendimensionale als tweedimensionale CA moet 
 er een lengte en 'boundary' conditie als input worden gegeven.
-Daarnaast moet er in de een-dimensionale CA een regel nummer worden gegeven.
-Bij de twee-dimensionale CA moet ook een regel worden gegeven als input, maar niet als nummer (er zijn teveel mogelijkheden).
+Daarnaast moet er in de eendimensionale CA een regel nummer worden gegeven.
+Bij de tweedimensionale CA moet ook een regel worden gegeven als input, maar niet als nummer (hiervoor zijn er teveel mogelijkheden).
 Een input kan zijn life. De regels van 'the game of life' worden dan gebruikt.
 Verder moet er nog een burenregel als input worden gegeven (Moore of VonNeumann).
+
+\section*{Handleiding}
+Voor het gebruik van de code moeten een aantal inputs gegeven worden. Omdat voor een dimensionale CA en een tweedimensionale CA verschillende inputs gebruikt worden zijn er voor beiden een aparte handleiding. \\
+\newline\large{Eendimensionaal} \\
+\newline\normalsize De eendimensionale CA heeft 5 inputs, in volgorde: 'length', 'border\_condition', 'rule\_number', 'starting\_field', 'timesteps'. Als eerste input 'length' kun je de lengte van het veld bepalen. Dit moet een geheel getal groter dan of gelijk aan 3 zijn. Als tweede input 'border\_condition' kun je kiezen tussen een donutvormige border of een harde border door 'periodic' of 'constant' te kiezen. 'periodic' een donutvormige border en 'constant' geeft een harde border waarbij het eerste en laatste element niet zullen veranderen. Als je derde input 'starting\_field' kun je zelf een beginveld kiezen of een willekeurig veld laten genereren.
+Je hebt de mogelijkheid om te kiezen voor een zelfgekozen veld of een willekeurig veld. Bijvoorbeeld '[0 0 0 0 1 1 1 0 1]'. 'random' zal een willekeurig veld genereren. De lengte van een zelfgekozen veld moet overeenkomen met de eerder ingevoerde lengte. Als vierde input 'rule\_number' kun je het regelnummer kiezen. Dit moet een geheel getal groter dan of gelijk aan 0 en kleiner dan of gelijk aan 255 zijn. Als vijfde input 'timesteps' kun je het aantal tijdsstappen kiezen. Dit moet een geheel getal groter of gelijk aan 1 zijn. \\
+Hieronder volgen wat samples: \\
+Input 1: \\
+100 \\
+periodic \\
+30 \\
+random \\
+200 \\
+\newline Output1: \\
+\newline \includegraphics{Figure_1.png} \\
+Input 2: \\
+9 \\
+constant \\
+2 \\
+[0 0 0 0 0 0 0 1 0] \\
+8 \\
+\newline Output2: \\
+\newline \includegraphics{
+\newline\large{Tweedimensionaal} \\
+\newline\normalsize
 
 \section*{Resultaten}
 Dit zijn de patronen die deze CA's kunnen maken:
@@ -190,7 +215,7 @@ Dit zijn de patronen die deze CA's kunnen maken:
 \includegraphics[scale=0.6]{2dimCA_100x100__Life_vonNeumann_periodic_100}
 \newline
 Dit zijn de parameters die zijn gebruikt 
-bij de een-dimensionale CA in de notatie 
+bij de een-dimensionale CA in de notatie:
 (dimensies, 'rulenumber', 'boundary condition', 'timesteps'):
 \newline
 Linksboven: (100, 110, 'periodic', 100)
@@ -198,7 +223,7 @@ Linksboven: (100, 110, 'periodic', 100)
 Rechtsboven: (100, 30, 'constant', 100)
 \newline
 Dit zijn de parameters die zijn gebruikt 
-bij de twee-dimensionale CA in de notatie 
+bij de twee-dimensionale CA in de notatie:
 (dimensies, 'rule', 'boundary condition', 'neighbourrule', 'timesteps'):
 \newline
 Linksonder: (100x100, 'Life', 'Moore', 'periodic', 100)
@@ -207,21 +232,21 @@ Rechtsonder: (100x100, 'Life', 'VonNeumann', 'periodic', 100)
 
 
 \section*{Conclusie}
-\textcolor{red}{Moet nog worden gedaan}
+Het is ons met nog beperkte kennis over python en programmeren gelukt om CA-generator te maken. De CA werkt voor de 256 standaardregels in de één-dimensionale ruimte en voor de 'the game of life' en de Moore en de VonNeumann regels in de twee-dimensionale ruimte.
 
 \section*{Discussie}
-Er is alleen de een-dimensionale CA en twee-dimensionale 
-CA gemaakt, maar er bestaat natuurlijk ook de drie-dimensionale CA.
-Voor toekomstige versies zou een drie-dimensionale CA een goede uitbreiding zijn.
-Daarnaast zou de CA ook uitgebreid kunnen worden met CA waar de cellen meer dan een binaire staat hebben, maar wel eindig.
-Ook kan er CA worden geïnplementeerd waar de cellen niet vierkant zijn, maar bijvoorbeeld hexagonaal.
+Er is alleen de eendimensionale CA en tweedimensionale 
+CA gemaakt, maar er bestaat natuurlijk ook de driedimensionale CA.
+Voor toekomstige versies zou een driedimensionale CA een goede uitbreiding zijn.
+Daarnaast zou de CA ook uitgebreid kunnen worden met CA waar de cellen meer dan één binaire staat hebben, maar wel een eindige hoeveelheid.
+Ook kan er een CA worden geïnplementeerd waar de cellen niet vierkant zijn, maar bijvoorbeeld hexagonaal.
 Kortom, onze code is alleen goed voor een heel beperkt aantal CA's.
 Als laatste hadden sommige methodes in de abstracte klassen moeten worden gezet, maar het 
-is makkelijker om het eerst in de lagere klassen te stoppen.
-Voor toekomstige versies zal dit moeten worden geïmplementeerd.  
+is makkelijker om ze eerst in de lagere klassen te stoppen.
+Voor toekomstige versies zal dit moeten worden geïmplementeerd. 
 
 \newpage
-\section*{Takenverdeling}
+\section*{Taakverdeling}
 We hebben de taken als volgt de verdeeld:
 \vspace{6pt}
 \newline
@@ -245,7 +270,7 @@ newline
 3) Handleiding 
 
 
-We hebben wel de code (dus de twee klassen) zo analoog mogelijk gemaakt.
+We hebben de code (dus de twee klassen) zo analoog mogelijk gemaakt, maar er zullen toch wat verschillen in de stijl zichtbaar zijn.
 
   
 
