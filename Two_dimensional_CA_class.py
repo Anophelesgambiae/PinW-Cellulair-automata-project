@@ -151,7 +151,7 @@ class two_dimension_CA(square_CA):
 
             case _:
                 print("NameError: " + str(rule) + \
-                      "is not defined in the set_new_state method, perhaps "
+                      " is not defined in the set_new_state method, perhaps "
                       "you made a typo" )
                 quit()    
 
@@ -184,7 +184,7 @@ class two_dimension_CA(square_CA):
                                 old_field[(row+1) % length][column] 
             case _:
                 print("NameError: " + str(neighbourhood_rule) + \
-                      "is not defined in the return_neighbour_sum method, "
+                      " is not defined in the return_neighbour_sum method, "
                       "perhaps you made a typo" )
                 quit()
 
