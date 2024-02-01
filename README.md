@@ -14,13 +14,13 @@ boundary condition 'paste' the border as a donut.
 
 We have the following classes:
 
-    CA_class:
+    CA_class (the abstract class of all possible CA):
 
-        square_CA_class:
+        square_CA_class (abstract class for CA with squares as cells:
     
-            -one-dimensional_CA_class:
+            -one-dimensional_CA_class (CA with only a row of square cells)
         
-            -two-dimensionale_CA_class
+            -two-dimensionale_CA_class (Ca with rows and column with square cells)
 
 For the two-dimensionale-CA we have also the neighbour rule, this rule tells what cells around one cell are the neigbours.
 This is used for the game of Life.
