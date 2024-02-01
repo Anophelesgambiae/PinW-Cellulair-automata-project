@@ -87,7 +87,8 @@ $\bullet$ Elke levende cel met meer dan drie buren gaat dood (overpopulatie).
 $\bullet$ Elke dode cel met precies drie buren wordt levend (reproductie).
 \newline
 \section*{Onderzoeksvraag}
-Kunnen wij een CA maken met de kennis over programmeren en python die we nu hebben?
+Kunnen wij een CA maken met de kennis over programmeren en python die we nu hebben 
+en hoe ziet de output van een CA eruit?
 
 \section*{Implementatie en verantwoording}
 Array's zijn voor een veld beter dan lijsten, omdat een veld maar één type object bevat (in dit geval het type 'int') 
@@ -100,7 +101,7 @@ en de values worden door de bits van het binair getal bepaald.
 We proberen daarnaast zoveel mogelijk functies in de abstracte klassen te zetten.
 De eendimensionale en tweedimensionale CA hebben bijvoorbeeld dezelfde parameter lengte.   
 
-
+\newpage
 \section*{Algoritmes}
 We hebben een abstracte class CA gemaakt die verschillende 'child' klassen heeft.
 \newline
@@ -184,7 +185,7 @@ Verder moet er nog een burenregel als input worden gegeven (Moore of VonNeumann)
 \section*{Handleiding}
 Voor het gebruik van de code moeten een aantal inputs gegeven worden. Omdat voor een dimensionale CA en een tweedimensionale CA verschillende inputs gebruikt worden zijn er voor beiden een aparte handleiding. \\
 \newline\large{Eendimensionaal} \\
-\newline\normalsize De eendimensionale CA heeft 4 inputs, in volgorde: 'length', 'border\_condition', 'rule\_number', 'starting\_field' en 'timesteps'. Als eerste input 'length' kun je de lengte van het veld bepalen. Dit moet een geheel getal groter dan of gelijk aan 3 zijn. Als tweede input 'border\_condition' kun je kiezen tussen een donutvormige border of een harde border door 'periodic' of 'constant' te kiezen. 'periodic' geeft een donutvormige border en 'constant' geeft een harde border waarbij het eerste en laatste element niet zullen veranderen. Als derde input 'rule\_number' kun je het regelnummer kiezen. Dit moet een geheel getal groter dan of gelijk aan 0 en kleiner dan of gelijk aan 255 zijn. Als vierde input 'timesteps' kun je het aantal tijdsstappen kiezen. Dit moet een geheel getal groter of gelijk aan 1 zijn. De output zal een matrix zijn waarin iedere rij één generatie van de CA voorstelt.\\
+\newline\normalsize De eendimensionale CA heeft 4 inputs, in volgorde: 'length', 'border\_condition', 'rule\_number' en 'timesteps'. Als eerste input 'length' kun je de lengte van het veld bepalen. Dit moet een geheel getal groter dan of gelijk aan 3 zijn. Als tweede input 'border\_condition' kun je kiezen tussen een donutvormige border of een harde border door 'periodic' of 'constant' te kiezen. 'periodic' geeft een donutvormige border en 'constant' geeft een harde border waarbij het eerste en laatste element niet zullen veranderen. Als derde input 'rule\_number' kun je het regelnummer kiezen. Dit moet een geheel getal groter dan of gelijk aan 0 en kleiner dan of gelijk aan 255 zijn. Als vierde input 'timesteps' kun je het aantal tijdsstappen kiezen. Dit moet een geheel getal groter of gelijk aan 1 zijn. De output zal een matrix zijn waarin iedere rij één generatie van de CA voorstelt.\\
 \newline\large{Tweedimensionaal} \\
 \newline\normalsize De tweedimensionale CA heeft 6 inputs, in volgorde: 'length', 'width', 'rule', 'neighbourhood\_rule', 'boundary\_condition' en 'timesteps'. Als eerste input kun je de lengte en de breedte van het veld kiezen. Deze moeten gescheiden zijn met een spatie en beide waarden moeten groter dan of gelijk aan 3 zijn en kleiner dan of gelijk aan 1000 zijn. Als tweede input kies je de regel, de burenregel en de boundary condition kiezen. Als derde input kun je het aantal tijdsstappen dat de CA doet kiezen. Dit moet een geheel getal groter dan of gelijk aan 0 en kleiner dan of gelijk aan 100 zijn.
 \newpage
