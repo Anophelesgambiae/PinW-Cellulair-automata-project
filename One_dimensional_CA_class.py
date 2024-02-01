@@ -166,8 +166,10 @@ def construct_CA_from_user_input():
     print("What should the length of the field be?")
     print("Please give your input as an integer between 3 and 1000.")
 
-    length_input: list[str] = input()
-    control_number_of_elements_in_input(length_input, 1)
+    length_list: list[str] = input().split(" ")
+    control_number_of_elements_in_input(length_list, 1)
+
+    length_input = length_list[0]
     control_for_int_type(length_input)
     length: int = int(length_input)
     control_length_value(length)
@@ -185,7 +187,7 @@ def construct_CA_from_user_input():
 
     border_condition: str = rules[0]
 
-    rule_number_input:str = rules[1]
+    rule_number_input: str = rules[1]
     control_for_int_type(rule_number_input)
     rule_number: int = int(rules[1])
     control_rule_number_value(rule_number)    
@@ -194,8 +196,10 @@ def construct_CA_from_user_input():
     print("How many timesteps do you want to generate?")
     print("Please give your input as an integer between 0 and 1000.")
 
-    timesteps_input: list[str] = input()
-    control_number_of_elements_in_input(timesteps_input, 1)
+    timesteps_list: list[str] = input().split(" ")
+    control_number_of_elements_in_input(timesteps_list, 1)
+
+    timesteps_input: str = timesteps_list[0] 
     control_for_int_type(timesteps_input)
     timesteps: int = int(timesteps_input)
     control_timesteps_value(timesteps)
