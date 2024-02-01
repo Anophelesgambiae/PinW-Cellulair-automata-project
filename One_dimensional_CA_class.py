@@ -119,20 +119,21 @@ def control_number_of_elements_in_input(input: list[str],
     else: None
     
 '''  
-Controls if the input has type int.
+Controls if the input has type int. If it does, it returns it, otherwise it stops the program.
 '''
-def control_for_int_type(input):
-    if str(type(json.loads(input))) != "<class 'int'>":
+def return_and_control_for_int_type(input: any):
+    try: result = int(input)
+    except ValueError:    
         print("TypeError: " + str(input) + " is not an integer")
         quit()    
-    else: None
+    return result
 
 '''  
 Controls if length is between 3 and 1000.
 '''
 def control_length_value(length: int):
     if length < 3 or length > 1000:
-        print("ValueError: length must be between 3 and 1000, " 
+        print("ValueError: please give an integer between 3 and 1000, "
               "your length was " + str(length))
         quit()
     else: None
@@ -152,7 +153,7 @@ Controls if timesteps is between 0 and 1000.
 '''
 def control_timesteps_value(timesteps):
     if timesteps < 0 or timesteps > 1000:
-        print("ValueError: timesteps must be between 0 and 1000, "
+        print("ValueError: please give an integer between 0 and 1000, "
               "your timesteps was " + str(timesteps))
         quit()
     else: None    
@@ -170,7 +171,7 @@ def construct_CA_from_user_input():
     control_number_of_elements_in_input(length_list, 1)
 
     length_input = length_list[0]
-    control_for_int_type(length_input)
+    return_and_control_for_int_type(length_input)
     length: int = int(length_input)
     control_length_value(length)
 
@@ -188,8 +189,7 @@ def construct_CA_from_user_input():
     border_condition: str = rules[0]
 
     rule_number_input: str = rules[1]
-    control_for_int_type(rule_number_input)
-    rule_number: int = int(rules[1])
+    rule_number: int = return_and_control_for_int_type(rule_number_input)
     control_rule_number_value(rule_number)    
 
     print("")
@@ -200,8 +200,7 @@ def construct_CA_from_user_input():
     control_number_of_elements_in_input(timesteps_list, 1)
 
     timesteps_input: str = timesteps_list[0] 
-    control_for_int_type(timesteps_input)
-    timesteps: int = int(timesteps_input)
+    timesteps: int = return_and_control_for_int_type(timesteps_input)
     control_timesteps_value(timesteps)
 
     
