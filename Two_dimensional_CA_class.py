@@ -165,27 +165,31 @@ class two_dimension_CA(square_CA):
 '''
 Controls for the number of elements in a string list.
 '''
-def control_number_of_elements_in_input(input: list[str], numbers_of_elements: int):
+def control_number_of_elements_in_input(input: list[str],
+                                        numbers_of_elements: int):
     if len(input) != numbers_of_elements:
-        print("Error: you have typed " + str(len(input)) + " elements, but there are " + str(numbers_of_elements) + " needed")
+        print("Error: you have typed " + str(len(input)) + " elements,")
+        print("but there are " + str(numbers_of_elements) + " needed")
         quit()
     else: None
-
+    
 '''  
-Controls if the input has type int.
+Controls if the input has type int. If it does, it returns it, otherwise it stops the program.
 '''
-def control_for_int_type(input: int):
-    if str(type(json.loads(input))) != "<class 'int'>":
+def return_and_control_for_int_type(input: any):
+    try: result = int(input)
+    except ValueError:    
         print("TypeError: " + str(input) + " is not an integer")
         quit()    
-    else: None
+    return result
 
 '''  
 Controls if length is between 3 and 1000.
 '''
-def control_length_value(length):
+def control_length_value(length: int):
     if length < 3 or length > 1000:
-        print("ValueError: length must be between 3 and 1000, your length was " + str(length))
+        print("ValueError: please give an integer between 3 and 1000, "
+              "your length was " + str(length))
         quit()
     else: None
 
@@ -194,7 +198,8 @@ Controls if rule_number is between 0 and 255.
 '''
 def control_rule_number_value(rule_number):
     if rule_number < 0 or rule_number > 255:
-        print("ValueError: please give an integer between 0 and 255, your rule_number was " + str(rule_number))
+        print("ValueError: please give an integer between 0 and 255, "
+              "your rule_number was " + str(rule_number))
         quit()                
     else: None
 
@@ -203,9 +208,10 @@ Controls if timesteps is between 0 and 1000.
 '''
 def control_timesteps_value(timesteps):
     if timesteps < 0 or timesteps > 1000:
-        print("ValueError: timesteps must be between 0 and 1000, your timesteps was " + str(timesteps))
+        print("ValueError: please give an integer between 0 and 1000, "
+              "your timesteps was " + str(timesteps))
         quit()
-    else: None    
+    else: None
 
 '''  
 Construct the CA with the input of the user.
@@ -220,13 +226,11 @@ def construct_CA_from_user_input():
     control_number_of_elements_in_input(dimensions, 2)
 
     length_input: str = dimensions[0]
-    control_for_int_type(length_input)
-    length: int = int(length_input)
+    length: int = return_and_control_for_int_type(length_input)
     control_length_value(length)
             
     width_input: str = dimensions[1]
-    control_for_int_type(width_input)
-    width: int = int(width_input)
+    width: int = return_and_control_for_int_type(width_input)
     control_length_value(width)
 
     print("")
@@ -250,8 +254,7 @@ def construct_CA_from_user_input():
     control_number_of_elements_in_input(timesteps_list, 1)
     
     timesteps_input: str = timesteps_list[0]
-    control_for_int_type(timesteps_input)
-    timesteps: int = int(timesteps_input)
+    timesteps: int = return_and_control_for_int_type(timesteps_input)
     control_timesteps_value(timesteps)
 
     two_dimension_CA(length, width, rule, neighbourhood_rule, border_condition, timesteps)
