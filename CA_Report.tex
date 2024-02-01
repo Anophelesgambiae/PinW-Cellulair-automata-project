@@ -14,6 +14,8 @@
 \usepackage{setspace}
 \usepackage{tabularx}
 
+\graphicspath{ {./CA_project_2024/} }
+
 
 \title{CA Reportage}
 \author{
@@ -84,7 +86,7 @@ $\bullet$ Elke levende cel met meer dan drie buren gaat dood (overpopulatie).
 \newline 
 $\bullet$ Elke dode cel met precies drie buren wordt levend (reproductie).
 \newline
-\section*{Onderzoeksvraag} \\
+\section*{Onderzoeksvraag}
 Kunnen wij een CA maken met de kennis over programmeren en python die we nu hebben?
 
 \section*{Implementatie en verantwoording}
@@ -185,46 +187,51 @@ Voor het gebruik van de code moeten een aantal inputs gegeven worden. Omdat voor
 \newline\normalsize De eendimensionale CA heeft 4 inputs, in volgorde: 'length', 'border\_condition', 'rule\_number', 'starting\_field' en 'timesteps'. Als eerste input 'length' kun je de lengte van het veld bepalen. Dit moet een geheel getal groter dan of gelijk aan 3 zijn. Als tweede input 'border\_condition' kun je kiezen tussen een donutvormige border of een harde border door 'periodic' of 'constant' te kiezen. 'periodic' geeft een donutvormige border en 'constant' geeft een harde border waarbij het eerste en laatste element niet zullen veranderen. Als derde input 'rule\_number' kun je het regelnummer kiezen. Dit moet een geheel getal groter dan of gelijk aan 0 en kleiner dan of gelijk aan 255 zijn. Als vierde input 'timesteps' kun je het aantal tijdsstappen kiezen. Dit moet een geheel getal groter of gelijk aan 1 zijn. De output zal een matrix zijn waarin iedere rij één generatie van de CA voorstelt.\\
 \newline\large{Tweedimensionaal} \\
 \newline\normalsize De tweedimensionale CA heeft 6 inputs, in volgorde: 'length', 'width', 'rule', 'neighbourhood\_rule', 'boundary\_condition' en 'timesteps'. Als eerste input kun je de lengte en de breedte van het veld kiezen. Deze moeten gescheiden zijn met een spatie en beide waarden moeten groter dan of gelijk aan 3 zijn en kleiner dan of gelijk aan 1000 zijn. Als tweede input kies je de regel, de burenregel en de boundary condition kiezen. Als derde input kun je het aantal tijdsstappen dat de CA doet kiezen. Dit moet een geheel getal groter dan of gelijk aan 0 en kleiner dan of gelijk aan 100 zijn.
+\newpage
 \section*{Resultaten}
+Output eendimensionaal: \\
 Input 1: \\
 100 \\
 periodic \\
 30 \\
-200 \\
+200
 \newline Output1: \\
-\newline \includegraphics{Figure_1.png} \\
+\includegraphics[scale=1]{1dCA_100_periodic_rule30_200} \\
+\newpage
 Input 2: \\
 9 \\
 constant \\
 2 \\
-8 \\
+8
 \newline Output2: \\
-\includegraphics[scale=0.5]{Figure_2.png}
-\newline\large{Tweedimensionaal} \\
-\newline\normalsize
-Dit zijn de patronen die deze CA's kunnen maken:
-\newline
-\graphicspath{ {./CA_project_2024/} }
-\includegraphics[scale=0.6]{1dimCA_100__rule110_periodic_100}
-\includegraphics[scale=0.6]{1dimCA_100__rule30_constant_100}
-\includegraphics[scale=0.6]{2dimCA_100x100__Life_Moore_periodic_100}
-\includegraphics[scale=0.6]{2dimCA_100x100__Life_vonNeumann_periodic_100}
-\newline
-Dit zijn de parameters die zijn gebruikt
-bij de een-dimensionale CA in de notatie:
-('length', 'rule\_number', 'boundary\_condition', 'timesteps'):
-\newline
-Linksboven: (100, 110, 'periodic', 100)
-\newline
-Rechtsboven: (100, 30, 'constant', 100)
-\newline
-Dit zijn de parameters die zijn gebruikt
-bij de twee-dimensionale CA in de notatie:
-('length', 'width', 'rule', 'boundary\_condition', 'neighbour\_rule', 'timesteps'):
-\newline
-Linksonder: (100x100, 'Life', 'Moore', 'periodic', 100)
-\newline
-Rechtsonder: (100x100, 'Life', 'VonNeumann', 'periodic', 100)
+\includegraphics[scale=0.5]{1dCA_9_constant_rule2_8} \\
+Input 3: \\
+100 \\
+periodic \\
+110 \\
+100
+\newline Output 3: \\
+\includegraphics[scale=0.7]{1dCA_100_periodic_rule110_100}
+\newpage
+Output tweedimensionaal: \\
+Input 1: \\
+100x100 \\
+Life \\
+Moore \\
+periodic \\
+100
+\newline Output 1: \\
+\includegraphics[scale=0.8]{2dCA_100x100_Life_Moore_periodic_100}
+\newpage
+Input 2: \\
+100x100 \\
+Life \\
+vonNeumann \\
+periodic \\
+100
+\newline Output 2: \\
+\includegraphics[scale=0.8]{2dCA_100x100_Life_vonNeumann_periodic_100}
+
 
 
 \section*{Conclusie}
@@ -241,7 +248,6 @@ Als laatste hadden sommige methodes in de abstracte klassen moeten worden gezet,
 is makkelijker om ze eerst in de lagere klassen te stoppen.
 Voor toekomstige versies zal dit moeten worden geïmplementeerd. 
 
-\newpage
 \section*{Taakverdeling}
 We hebben de taken als volgt de verdeeld:
 \vspace{6pt}
@@ -262,8 +268,9 @@ Fabian de Vries:
 1) een-dimensionale CA klasse
 \newline
 2) het bekijken van het visueel maken van de CA
-newline
-3) Handleiding 
+\newline
+3) Handleiding
+\newline
 
 
 We hebben de code (dus de twee klassen) zo analoog mogelijk gemaakt, maar er zullen toch wat verschillen in de stijl zichtbaar zijn.
