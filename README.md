@@ -12,10 +12,17 @@ Because a computer cannot have a infinite grid of cells we must do something wit
 The constant boundary condition let all cells in the border constant, and the periodic
 boundary condition 'paste' the border as a donut.
 
+We have the following classes:
+CA_class:
+    square_CA_class:
+        -one-dimensional_CA_class:
+        -two-dimensionale_CA_class
+
 For the two-dimensionale-CA we have also the neighbour rule, this rule tells what cells around one cell are the neigbours.
 This is used for the game of Life.
 
 When running the program interesting patterns can be seen. 
 For the game of life this patterns can be complex.
+
 
 
