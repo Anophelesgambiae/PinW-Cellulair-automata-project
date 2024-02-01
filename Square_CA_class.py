@@ -22,6 +22,6 @@ class square_CA(CA):
         self.length = length
         self.boundary_condition = boundary_condition
 
-    def display_CA(self, field):
+    def display_CA(self, field: np.array):
         plot.imshow(field, cmap='binary')
         plot.show()    
