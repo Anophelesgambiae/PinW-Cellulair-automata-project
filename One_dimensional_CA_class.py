@@ -85,8 +85,9 @@ class one_dimension_CA(square_CA):
                         self.field[element] = newstate
                 
                 case _:
-                    print("NameError: " + str(boundary_condition) + 
-                          " is not defined in the next_generation method, perhaps you made a typo" )
+                    print("NameError: " + str(boundary_condition) + \
+                          " is not defined in the next_generation method")
+                    print("perhaps you made a typo")
                     quit()
 
             # Stop the run when the spacebar or escape is pressed
@@ -109,9 +110,11 @@ class one_dimension_CA(square_CA):
 '''
 Controls for the number of elements in a string list.
 '''
-def control_number_of_elements_in_input(input: list[str], numbers_of_elements: int):
+def control_number_of_elements_in_input(input: list[str],
+                                        numbers_of_elements: int):
     if len(input) != numbers_of_elements:
-        print("Error: you have typed " + str(len(input)) + " elements, but there are " + str(numbers_of_elements) + " needed")
+        print("Error: you have typed " + str(len(input)) + " elements,")
+        print("but there are " + str(numbers_of_elements) + " needed")
         quit()
     else: None
     
@@ -129,7 +132,8 @@ Controls if length is between 3 and 1000.
 '''
 def control_length_value(length: int):
     if length < 3 or length > 1000:
-        print("ValueError: length must be between 3 and 1000, your length was " + str(length))
+        print("ValueError: length must be between 3 and 1000, " 
+              "your length was " + str(length))
         quit()
     else: None
 
@@ -138,7 +142,8 @@ Controls if rule_number is between 0 and 255.
 '''
 def control_rule_number_value(rule_number):
     if rule_number < 0 or rule_number > 255:
-        print("ValueError: please give an integer between 0 and 255, your rule_number was " + str(rule_number))
+        print("ValueError: please give an integer between 0 and 255, "
+              "your rule_number was " + str(rule_number))
         quit()                
     else: None
 
@@ -147,7 +152,8 @@ Controls if timesteps is between 0 and 1000.
 '''
 def control_timesteps_value(timesteps):
     if timesteps < 0 or timesteps > 1000:
-        print("ValueError: timesteps must be between 0 and 1000, your timesteps was " + str(timesteps))
+        print("ValueError: timesteps must be between 0 and 1000, "
+              "your timesteps was " + str(timesteps))
         quit()
     else: None    
 
@@ -167,8 +173,10 @@ def construct_CA_from_user_input():
     control_length_value(length)
 
     print("")
-    print("What border_condition and rule_number do you want to use? (seperated with a space)")
-    print("For border_condition you can choose between 'periodic' and 'constant'.")
+    print("What border_condition and rule_number do you want to use?")
+    print("(seperated with a space)")
+    print("For border_condition you can choose between 'periodic' and "
+          "'constant'.")
     print("For rule_number can choose an integer between 0 and 255.")
 
 
@@ -197,4 +205,3 @@ def construct_CA_from_user_input():
 
 
 construct_CA_from_user_input()
-
