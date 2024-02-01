@@ -246,8 +246,10 @@ def construct_CA_from_user_input():
     print("How many timesteps do you want to generate?")
     print("Please give your input as an integer between 0 and 1000.")
 
-    timesteps_input: str = input()
-    control_number_of_elements_in_input(timesteps_input, 1)
+    timesteps_list: list[str] = input().split(" ")
+    control_number_of_elements_in_input(timesteps_list, 1)
+    
+    timesteps_input: str = timesteps_list[0]
     control_for_int_type(timesteps_input)
     timesteps: int = int(timesteps_input)
     control_timesteps_value(timesteps)
