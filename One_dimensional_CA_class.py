@@ -119,7 +119,8 @@ def control_number_of_elements_in_input(input: list[str],
     else: None
     
 '''  
-Controls if the input has type int. If it does, it returns it, otherwise it stops the program.
+Controls if the input has type int. If it does, it returns it, otherwise it
+stops the program.
 '''
 def return_and_control_for_int_type(input: any):
     try: result = int(input)
