@@ -20,7 +20,7 @@ We have the following classes:
     
             -one-dimensional_CA_class (CA with only a row of square cells)
         
-            -two-dimensionale_CA_class (Ca with rows and column with square cells)
+            -two-dimensionale_CA_class (CA with rows and column of square cells)
 
 For the two-dimensionale-CA we have also the neighbour rule, this rule tells what cells around one cell are the neigbours.
 This is used for the game of Life.
