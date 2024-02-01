@@ -1,4 +1,3 @@
-
 import numpy as np
 import msvcrt as ms
 import time
@@ -16,24 +15,31 @@ The field is thus a retangle with a predefined length and width.
 The length and width must be an integer.
 The rule, neighbourhood_rule and boundary_condition must be a string.
 
-The rule is how we can define when a cell have the state 0 or 1. We have the following rules:
+The rule is how we can define when a cell have the state 0 or 1. We have the
+following rules:
 - Life: The rule used for the game of Life CA 
 
 The neighbourhood_rule is what are the neigbours of one cell. The rules are:
 - Moore: all horizontal, vertical and diagonal adjacent cells are neighbours.  
-- vonNeumann: same as the Moore except the cell on the diagonal are not neighbours. 
+- vonNeumann: same as the Moore except the cell on the diagonal are not
+neighbours. 
 
-The boundary_condition is what we do with the cells at the boundary. The rules are:
-- periodic: a borderless field (the borders of the field are connected as a donut)  
-- constant: the field have a border (thus the cells on the border are constant)
+The boundary_condition is what we do with the cells at the boundary. The rules
+are:
+- periodic: a borderless field (the borders of the field are connected as a
+donut)  
+- constant: the field have a border (thus the cells on the border are
+constant)
 
 '''
 class two_dimension_CA(square_CA):
 
     '''
-    Make a field with a random state on each cell. Calls the next_generation method.
+    Make a field with a random state on each cell. Calls the next_generation
+    method.
     '''
-    def __init__(self, length: int, width: int, rule: str, neighbourhood_rule: str, 
+    def __init__(self, length: int, width: int, 
+                 rule: str, neighbourhood_rule: str,
                  boundary_condition: str, timesteps: int):
 
         
@@ -46,22 +52,28 @@ class two_dimension_CA(square_CA):
         # Set the value to 1 for some of the elements on the field
         for row in range(0, length):
             for column in range(0 , width):
-                # The p is a list with the frequency of each state in order of 0 and higher. 
+                # The p is a list with the frequency of each state in order
+                # of 0 and higher. 
                 state: int = np.random.choice(np.arange(0,2), p=[0.5, 0.5])
                 self.field[row][column] = state
 
-        self.next_generation(length, width, rule, neighbourhood_rule, boundary_condition, timesteps)
+        self.next_generation(length, width, rule, neighbourhood_rule, 
+                             boundary_condition, timesteps)
     
     # Return a string of the field.
     def __str__(self) -> str:
         return str(self.field)    
     '''
     Define for all cells on the field the new state (0 or 1). 
-    This function runs the given timesteps or stops when the user press space or esc.
-    You can define new boundary_condition to make a new case with a new name in a string. 
+    This function runs the given timesteps or stops when the user press space
+    or esc.
+    You can define new boundary_condition to make a new case with a new name
+    in a string. 
     In this case you define with a for loop which cells can change.
     '''
-    def next_generation(self, length: int, width: int, rule: str, neighbourhood_rule: str, boundary_condition: str, timesteps: int):
+    def next_generation(self, length: int, width: int, 
+                        rule: str, neighbourhood_rule: str,
+                        boundary_condition: str, timesteps: int):
         
 
         for t in range(0, timesteps):
@@ -78,17 +90,22 @@ class two_dimension_CA(square_CA):
                     for row in range(0, length):
                         for column in range(0 , width):
 
-                            self.set_new_state(length, width, old_field, row, column, rule, neighbourhood_rule)   
+                            self.set_new_state(length, width, old_field, 
+                                               row, column, 
+                                               rule, neighbourhood_rule)   
 
                 case "constant":
                     for row in range(1, length-1):
                         for column in range(1 , width-1):
 
-                            self.set_new_state(length, width, old_field, row, column, rule, neighbourhood_rule)
+                            self.set_new_state(length, width, old_field,
+                                               row, column,
+                                               rule, neighbourhood_rule)
 
                 case _:
                     print("NameError: " + str(boundary_condition) + 
-                          "is not defined in the next_generation method, perhaps you made a typo" )
+                          " is not defined in the next_generation method, "
+                          "perhaps you made a typo")
                     quit()
 
         print("CA has done " + str(timesteps) + " timesteps") 
@@ -97,19 +114,28 @@ class two_dimension_CA(square_CA):
     '''
     Set the new state (0 or 1) of the cel on the given row and column. 
     With the game of life the following rules exists:
-    - a living cell dies when there are less than 2 living cells in their neighbourhood (underpopulation).
-    - a living cell dies when there are more than 3 living cells in their neighbourhood (overpopulation).
+    - a living cell dies when there are less than 2 living cells in their
+    neighbourhood (underpopulation).
+    - a living cell dies when there are more than 3 living cells in their
+    neighbourhood (overpopulation).
     - a living cell lives otherwise.
-    - a dead cell will be born when there exactly 3 living cells in their neighbourhood (reproduction)
+    - a dead cell will be born when there exactly 3 living cells in their
+    neighbourhood (reproduction)
 
-    You can define new rules to make a new case with a new name in a string. With if statements you can tell when living cells die
-    and when dead cells born. 
+    You can define new rules to make a new case with a new name in a string.
+    With if statements you can tell when living cells die and when dead cells
+    born. 
     '''
-    def set_new_state(self, length: int, width: int, old_field: np.array, row: int, column: int, rule: str, neighbourhood_rule: str):
+    def set_new_state(self, length: int,
+                      width: int, old_field: np.array,
+                      row: int, column: int,
+                      rule: str, neighbourhood_rule: str):
 
         old_state = old_field[row][column]
 
-        neighbour_sum = self.return_neighbour_sum(length, width, old_field, row, column, neighbourhood_rule)
+        neighbour_sum = self.return_neighbour_sum(length, width,
+                                                  old_field, row,
+                                                  column, neighbourhood_rule)
 
         match rule:
             case "Life":
@@ -125,7 +151,8 @@ class two_dimension_CA(square_CA):
 
             case _:
                 print("NameError: " + str(rule) + \
-                      "is not defined in the set_new_state method, perhaps you made a typo" )
+                      "is not defined in the set_new_state method, perhaps "
+                      "you made a typo" )
                 quit()    
 
         self.field[row][column] = new_state    
@@ -133,28 +160,32 @@ class two_dimension_CA(square_CA):
     '''
     Calculates the number of living cells in the neighbourhood.
 
-    You can define new rules to make a new case with a new name in a string. You can define which cells are calculated.
-    Example: old_field[3][5] returns the state of a cell on row 3 and column 5. 
+    You can define new rules to make a new case with a new name in a string.
+    You can define which cells are calculated. Example: old_field[3][5] 
+    returns the state of a cell on row 3 and column 5. 
     '''
-    def return_neighbour_sum(self, length: int, width: int, old_field: np.array, row: int, column: int, neighbourhood_rule: str) -> int:
+    def return_neighbour_sum(self, length: int, width: int, 
+                             old_field: np.array, row: int,
+                             column: int, neighbourhood_rule: str) -> int:
         match neighbourhood_rule:
             case "Moore":
-                    neighbour_sum = old_field[(row-1) % length][(column-1) % width] + \
-                                    old_field[(row-1) % length][column] + \
-                                    old_field[(row-1) % length][(column+1) % width] + \
-                                    old_field[row][(column-1) % width] + \
-                                    old_field[row][(column+1) % width] + \
-                                    old_field[(row+1) % length][(column-1) % width] + \
-                                    old_field[(row+1) % length][column] + \
-                                    old_field[(row+1) % length][(column+1) % width]
+                neighbour_sum = old_field[(row-1) % length][(column-1) % width] + \
+                                old_field[(row-1) % length][column] + \
+                                old_field[(row-1) % length][(column+1) % width] + \
+                                old_field[row][(column-1) % width] + \
+                                old_field[row][(column+1) % width] + \
+                                old_field[(row+1) % length][(column-1) % width] + \
+                                old_field[(row+1) % length][column] + \
+                                old_field[(row+1) % length][(column+1) % width]
             case "vonNeumann":
-                    neighbour_sum = old_field[(row-1) % length][column] + \
-                                    old_field[row][(column-1) % width] + \
-                                    old_field[row][(column+1) % width] + \
-                                    old_field[(row+1) % length][column] 
+                neighbour_sum = old_field[(row-1) % length][column] + \
+                                old_field[row][(column-1) % width] + \
+                                old_field[row][(column+1) % width] + \
+                                old_field[(row+1) % length][column] 
             case _:
                 print("NameError: " + str(neighbourhood_rule) + \
-                      "is not defined in the return_neighbour_sum method, perhaps you made a typo" )
+                      "is not defined in the return_neighbour_sum method, "
+                      "perhaps you made a typo" )
                 quit()
 
         return neighbour_sum
@@ -174,7 +205,8 @@ def control_number_of_elements_in_input(input: list[str],
     else: None
     
 '''  
-Controls if the input has type int. If it does, it returns it, otherwise it stops the program.
+Controls if the input has type int. If it does, it returns it, otherwise it
+stops the program.
 '''
 def return_and_control_for_int_type(input: any):
     try: result = int(input)
@@ -219,7 +251,8 @@ For CA_type you can give as input the '1d_CA' and '2d_CA':
 '''
 def construct_CA_from_user_input():
     
-    print("What should the length and width of the field be? (seperated with a space)")
+    print("What should the length and width of the field be? "
+          "(seperated with a space)")
     print("Please give your inputs as an integer between 3 and 1000.")
 
     dimensions = input().split(" ")
@@ -234,10 +267,14 @@ def construct_CA_from_user_input():
     control_length_value(width)
 
     print("")
-    print("What rule, neighbour_rule and border_condition do you want to use? (seperated with a space)")
+    print("What rule, neighbour_rule and border_condition do you want to "
+          "use?")
+    print("(seperated with a space)")
     print("For rule you can choose 'Life'.")
-    print("For neighbour_rule you can choose between 'Moore' and 'vonNeumann'")
-    print("For border_condition you can choose between 'periodic' and 'constant'.")
+    print("For neighbour_rule you can choose between 'Moore' and " 
+          "'vonNeumann'")
+    print("For border_condition you can choose between 'periodic' and "
+          "'constant'.")
 
     rules = input().split(" ")
     control_number_of_elements_in_input(rules, 3)
@@ -257,7 +294,8 @@ def construct_CA_from_user_input():
     timesteps: int = return_and_control_for_int_type(timesteps_input)
     control_timesteps_value(timesteps)
 
-    two_dimension_CA(length, width, rule, neighbourhood_rule, border_condition, timesteps)
+    two_dimension_CA(length, width, rule,
+                     neighbourhood_rule, border_condition, timesteps)
 
 
 construct_CA_from_user_input()
